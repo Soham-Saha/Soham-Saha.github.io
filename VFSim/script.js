@@ -39,9 +39,9 @@ function viewUpdater() {
         mem_i = 0
         mem.forEach(memInst => {
                 c = [0, 255, 255]
-                ctx.fillStyle = `rgb(${c[0] * mem_i / MEM_LENGTH},${c[1] * mem_i / MEM_LENGTH},${c[2] * mem_i / MEM_LENGTH})`
+                ctx.fillStyle = `rgba(${c[0] * mem_i / MEM_LENGTH},${c[1] * mem_i / MEM_LENGTH},${c[2] * mem_i / MEM_LENGTH})`
                 memInst.forEach(p => {
-                        ctx.fillRect(p[0], p[1], 1, 1)
+                        ctx.fillRect(p[0], p[1], 0.5+1*mem_i/MEM_LENGTH, 0.5+1*mem_i/MEM_LENGTH)
                 });
                 mem_i++
         });
