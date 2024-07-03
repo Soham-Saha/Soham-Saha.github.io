@@ -1,0 +1,97 @@
+<html>
+        <body>
+                <canvas id="canv"></canvas>
+                <script type="text/javascript">
+                        
+                        function rotA(a,b,t){
+                                return Math.cos(t)*a-Math.sin(t)*b;
+                        }
+                        function rotB(a,b,t){
+                                return Math.sin(t)*a+Math.cos(t)*b;
+                        }
+                        class Point{
+                                w=0
+                                x=0
+                                y=0
+                                z=0
+                                constructor(x,y,z,w){
+                                        this.x=x;
+                                        this.y=y;
+                                        this.z=z;
+                                        this.w=w;
+                                }
+                                rotate(wx,xy,yz,zw){
+                                        const tmpw=this.w
+                                        this.w=rotA(tmpw,this.x,wx)
+                                        this.x=rotB(tmpw,this.x,wx)
+
+                                        const tmpx=this.x
+                                        this.x=rotA(tmpx,this.y,xy)
+                                        this.y=rotB(tmpx,this.y,xy)
+
+                                        const tmpy=this.y
+                                        this.y=rotA(tmpy,this.z,yz)
+                                        this.z=rotB(tmpy,this.z,yz)
+
+                                        const tmpz=this.z
+                                        this.z=rotA(tmpz,this.w,zw)
+                                        this.w=rotB(tmpz,this.w,zw)
+                                }
+                        }
+                        let data=[]
+                        for(i=-1;i<2;i+=2){
+                                for(j=-1;j<2;j+=2){
+                                        for(k=-1;k<2;k+=2){
+                                                for(l=-1;l<2;l+=2){
+                                                        data.push(new Point(i,j,k,l))
+                                                }
+                                        }
+                                }
+                        }
+                        let connections=[]
+                        for(i=0;i<16;i++){
+                                for(j=i+1;j<16;j++){
+                                        sum=Math.abs(data[i].x-data[j].x)
+                                        sum+=Math.abs(data[i].y-data[j].y)
+                                        sum+=Math.abs(data[i].z-data[j].z)
+                                        sum+=Math.abs(data[i].w-data[j].w)
+                                        if(sum==2){
+                                                connections.push([i,j,`hsl(${Math.floor(Math.random()*360)}, 100%, 50%)`])
+                                        }
+                                }
+                        }
+                        function plane(p){
+                                return [p.x*(50+20*p.z)+200,p.y*(50+20*p.z)+200]
+                        }
+                        canv=document.getElementById('canv')
+                        canv.width=1000
+                        canv.height=1000
+                        ctx=canv.getContext('2d')
+                        data.map(x=>x.rotate(0.5,0,0,0))
+                        function anim(){
+                                data.map(x=>x.rotate(0.0,0.0,0,0.01))
+                                ctx.fillStyle='white'
+                                ctx.fillRect(0,0,1000,1000)
+                                /*data.forEach(x=>{
+                                        ctx.fillStyle='black'
+                                        pt=plane(x)
+                                        ctx.fillRect(pt[0],pt[1],2,2)
+                                })*/
+                                connections.forEach(x=>{
+                                        ctx.strokeStyle=x[2]
+                                        ctx.beginPath();
+                                        pt1=plane(data[x[0]])
+                                        pt2=plane(data[x[1]])
+                                        ctx.moveTo(pt1[0], pt1[1]);
+                                        ctx.lineTo(pt2[0], pt2[1]);
+                                        ctx.stroke();
+                                })
+                                requestAnimationFrame(anim)
+                        }
+
+                        //TODO: need to update the projection function and the color scheme
+
+                        requestAnimationFrame(anim)
+                </script>
+        </body>
+</html>
