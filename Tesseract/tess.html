@@ -81,15 +81,17 @@
 
                         //Projection function
                         function plane(p){
-                                return [p.x*3000/((5-p.w)*(10-p.z))+200,p.y*3000/((5-p.w)*(10-p.z))+200]
+                                return [p.x*2000/((3.5-p.w)*(10-p.z))+200,p.y*2000/((3.5-p.w)*(10-p.z))+200]
                         }
+
+                        //Animation
                         canv=document.getElementById('canv')
                         canv.width=1000
                         canv.height=1000
                         ctx=canv.getContext('2d')
-                        data.map(x=>x.rotate(0.0,0.0,0.0,0.6,1.2,0.0))
+                        data.map(x=>x.rotate(0.0,0.0,0.0,0.,0,0.0))
                         function anim(){
-                                data.map(x=>x.rotate(0.0,0.0,0.01,0.0,0.0,0.0))
+                                data.map(x=>x.rotate(0.0,0.0,0.01,0.0,0.0,0.01))
                                 ctx.fillStyle='white'
                                 ctx.fillRect(0,0,1000,1000)
                                 data.forEach(x=>{
