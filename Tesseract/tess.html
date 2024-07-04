@@ -3,7 +3,8 @@
         <body>
                 <canvas id="canv"></canvas>
                 <script type="text/javascript">
-                        
+
+                        //4D point and rotation system
                         function rotA(a,b,t){
                                 return Math.cos(t)*a-Math.sin(t)*b;
                         }
@@ -47,6 +48,8 @@
                                         this.y=rotB(tmp,this.y,wy)
                                 }
                         }
+
+                        //Initialize vertices and connections
                         let data=[]
                         for(i=-1;i<2;i+=2){
                                 for(j=-1;j<2;j+=2){
@@ -75,23 +78,25 @@
                                         }
                                 }
                         }
+
+                        //Projection function
                         function plane(p){
-                                return [p.x*200/((4-p.w))+200,p.y*200/((4-p.w))+200]
+                                return [p.x*3000/((5-p.w)*(10-p.z))+200,p.y*3000/((5-p.w)*(10-p.z))+200]
                         }
                         canv=document.getElementById('canv')
                         canv.width=1000
                         canv.height=1000
                         ctx=canv.getContext('2d')
-                        data.map(x=>x.rotate(0.0,0.0,0.0,0.6,1.3,0.0))
+                        data.map(x=>x.rotate(0.0,0.0,0.0,0.6,1.2,0.0))
                         function anim(){
-                                data.map(x=>x.rotate(0.0,0.0,0.002,0.0,0.0,0.0))
+                                data.map(x=>x.rotate(0.0,0.0,0.01,0.0,0.0,0.0))
                                 ctx.fillStyle='white'
                                 ctx.fillRect(0,0,1000,1000)
-                                /*data.forEach(x=>{
+                                data.forEach(x=>{
                                         ctx.fillStyle='black'
                                         pt=plane(x)
-                                        ctx.fillRect(pt[0],pt[1],2,2)
-                                })*/
+                                        ctx.fillRect(pt[0]-2,pt[1]-2,4,4)
+                                })
                                 connections.forEach(x=>{
                                         ctx.strokeStyle=x[2]
                                         ctx.beginPath();
