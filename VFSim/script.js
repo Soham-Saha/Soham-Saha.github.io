@@ -1,16 +1,3 @@
-class Point {
-        x;
-        y;
-        vx;
-        vy;
-        constructor(x, y, vx=0, vy=0) {
-                this.x = x;
-                this.y = y;
-                this.vx = vx;
-                this.vy = vy;
-        }
-}
-
 MEM_LENGTH = 50
 PT_COUNT = 1000
 
