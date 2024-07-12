@@ -64,18 +64,15 @@
         }
 
         let ct = 0;
-        const clearOut = false;
 
         function updateScreen() {
             ct += 1;
             updatePoints();
             ctx.fillStyle = 'rgba(0,0,0,0.05)';
             ctx.fillRect(0, 0, WIDTH, HEIGHT);
-            if (!clearOut) {
-                for (let i = 0; i < NUM_POINTS; i++) {
-                    ctx.fillStyle=colors[i]
-                    ctx.fillRect(pts[i * 2] + WIDTH / 2, pts[i * 2 + 1] + HEIGHT / 2, 1, 1);
-                }
+            for (let i = 0; i < NUM_POINTS; i++) {
+                ctx.fillStyle=colors[i]
+                ctx.fillRect(pts[i * 2] + WIDTH / 2, pts[i * 2 + 1] + HEIGHT / 2, 1, 1);
             }
             requestAnimationFrame(updateScreen);
             if (ct > 100) {
