@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generative Art</title>
+</head>
+<body>
+    <canvas id='canv'></canvas>
+    <script>
+        const WIDTH = window.innerWidth;
+        const HEIGHT = window.innerHeight;
+        const NUM_POINTS = 500;
+        const RADIUS = Math.min(WIDTH, HEIGHT) / 3;
+
+        document.body.style.background = 'black';
+        const canv = document.getElementById('canv');
+        const ctx = canv.getContext('2d');
+        canv.width = WIDTH;
+        canv.height = HEIGHT;
+
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+        const pts = new Float32Array(NUM_POINTS * 2);
+        for (let i = 0; i < NUM_POINTS; i++) {
+            pts[i * 2] = Math.cos(i / NUM_POINTS * 2 * Math.PI) * RADIUS;
+            pts[i * 2 + 1] = Math.sin(i / NUM_POINTS * 2 * Math.PI) * RADIUS;
+        }
+
+        let targets = [];
+        function reset() {
+            targets = [];
+            for (let i = 0; i < NUM_POINTS; i++) {
+                targets.push((i + 117) % NUM_POINTS);
+            }
+            for (let i = 0; i < 1000; i++) {
+                const a = Math.floor(Math.random() * NUM_POINTS);
+                const b = Math.floor(Math.random() * NUM_POINTS);
+                const tmp = targets[a];
+                targets[a] = targets[b];
+                targets[b] = tmp;
+            }
+        }
+
+        function updatePoints() {
+            for (let i = 0; i < NUM_POINTS; i++) {
+                const x = pts[2 * i];
+                const y = pts[2 * i + 1];
+                const tx = pts[targets[i] * 2];
+                const ty = pts[targets[i] * 2 + 1];
+                if (vert[i] == 1) {
+                    pts[2 * i] += (tx - x) * 0.1;
+                } else {
+                    pts[2 * i + 1] += (ty - y) * 0.1;
+                }
+            }
+        }
+
+        let ct = 0;
+        const clearOut = false;
+
+        function updateScreen() {
+            ct += 1;
+            updatePoints();
+            ctx.fillStyle = 'rgba(0,0,0,0.05)';
+            ctx.fillRect(0, 0, WIDTH, HEIGHT);
+            if (!clearOut) {
+                ctx.fillStyle = 'white';
+                for (let i = 0; i < NUM_POINTS; i++) {
+                    ctx.fillRect(pts[i * 2] + WIDTH / 2, pts[i * 2 + 1] + HEIGHT / 2, 1, 1);
+                }
+            }
+            requestAnimationFrame(updateScreen);
+            if (ct > 100) {
+                reset();
+                ct = 0;
+            }
+        }
+
+        reset();
+        let vert = targets.map(x => x % 2);
+
+        requestAnimationFrame(updateScreen);
+    </script>
+</body>
+</html>
