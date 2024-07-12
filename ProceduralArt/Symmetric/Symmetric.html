@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pulse</title>
+    <title>Symmetric</title>
 </head>
 <body>
     <canvas id='canv'></canvas>
@@ -27,12 +27,17 @@
         }
 
         let targets = [];
+        let colors=[];
+        for(i=0;i<NUM_POINTS;i++){
+            colors.push('#'+(Math.random()*0xFFFFFF<<0).toString(16));
+        }
         function reset() {
             targets = [];
+            g=Math.floor(Math.random()*NUM_POINTS)
             for (let i = 0; i < NUM_POINTS; i++) {
-                targets.push((i + 117) % NUM_POINTS);
+                targets.push((i + g) % NUM_POINTS);
             }
-            for (let i = 0; i < 1000; i++) {
+            for (let i = 0; i < 0; i++) {
                 const a = Math.floor(Math.random() * NUM_POINTS);
                 const b = Math.floor(Math.random() * NUM_POINTS);
                 const tmp = targets[a];
@@ -67,8 +72,8 @@
             ctx.fillStyle = 'rgba(0,0,0,0.05)';
             ctx.fillRect(0, 0, WIDTH, HEIGHT);
             if (!clearOut) {
-                ctx.fillStyle = 'white';
                 for (let i = 0; i < NUM_POINTS; i++) {
+                    ctx.fillStyle=colors[i]
                     ctx.fillRect(pts[i * 2] + WIDTH / 2, pts[i * 2 + 1] + HEIGHT / 2, 1, 1);
                 }
             }
