@@ -2,6 +2,9 @@
 <html>
 <head>
     <title>Pulse</title>
+</head>
+<body>
+    <canvas id='canv'></canvas>
     <style>
         body {
             margin: 0;
@@ -9,27 +12,28 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             background: black;
+            overflow: hidden;
+        }
+        canvas {
+            max-width: 100%;
+            max-height: 100%;
         }
     </style>
-</head>
-<body>
-    <canvas id='canv'></canvas>
     <script>
         const WIDTH = window.innerWidth;
         const HEIGHT = window.innerHeight;
         const NUM_POINTS = 500;
         const RADIUS = Math.min(WIDTH, HEIGHT) / 3;
-        const CANVAS_SIZE = 2 * RADIUS;
 
+        document.body.style.background = 'black';
         const canv = document.getElementById('canv');
         const ctx = canv.getContext('2d');
-        canv.width = CANVAS_SIZE;
-        canv.height = CANVAS_SIZE;
+        canv.width = WIDTH;
+        canv.height = HEIGHT;
 
         ctx.fillStyle = 'black';
-        ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
         const pts = new Float32Array(NUM_POINTS * 2);
         for (let i = 0; i < NUM_POINTS; i++) {
@@ -54,6 +58,7 @@
         reset()
         
         let vert = targets.map(x => x % 2);
+
         function updatePoints() {
             for (let i = 0; i < NUM_POINTS; i++) {
                 const x = pts[2 * i];
@@ -67,17 +72,19 @@
                 }
             }
         }
+
         let ct = 0;
         const clearOut = false;
+
         function updateScreen() {
             ct += 1;
             updatePoints();
             ctx.fillStyle = 'rgba(0,0,0,0.05)';
-            ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+            ctx.fillRect(0, 0, WIDTH, HEIGHT);
             if (!clearOut) {
-                ctx.fillStyle = 'white';
+                ctx.fillStyle='white'
                 for (let i = 0; i < NUM_POINTS; i++) {
-                    ctx.fillRect(pts[i * 2] + RADIUS, pts[i * 2 + 1] + RADIUS, 1, 1);
+                    ctx.fillRect(pts[i * 2] + WIDTH / 2, pts[i * 2 + 1] + HEIGHT / 2, 1, 1);
                 }
             }
             requestAnimationFrame(updateScreen);
@@ -86,6 +93,7 @@
                 ct = 0;
             }
         }
+
         requestAnimationFrame(updateScreen);
     </script>
 </body>
