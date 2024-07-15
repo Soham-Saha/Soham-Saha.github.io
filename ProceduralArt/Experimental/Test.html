@@ -1,0 +1,39 @@
+<!--This is not ready yet, trying out new ideas-->
+
+<html>
+
+<head>
+        <title>Unnamed</title>
+        <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+        <canvas id='canvas'></canvas>
+        <script src='http://joeiddon.github.io/perlin/perlin.js'></script>
+        <script>
+                WIDTH = window.innerWidth
+                HEIGHT = window.innerHeight
+
+                canv = document.getElementById('canvas')
+                canv.width = WIDTH
+                canv.height = HEIGHT
+                ctx = canv.getContext('2d')
+                t=0
+                function update() {
+                        ctx.fillStyle='black'
+                        ctx.fillRect(0,0,WIDTH,HEIGHT)
+                        for (i = 0; i < 500; i += 0.5) {
+                                t++
+                                k = (perlin.get(i / 100, t/20000) + 1) * 120
+                                //${Math.random() * 255},${Math.random() * 255},${Math.random() * 255}
+                                ctx.fillStyle = `rgba(255,255,255,${1 - k / 240})`
+                                ctx.fillRect(WIDTH / 2 - k, i + HEIGHT / 2 - 250, 2 * k, 0.5)
+                        }
+                }
+                setInterval(()=>{requestAnimationFrame(update);},50)
+                
+
+        </script>
+</body>
+
+</html>
