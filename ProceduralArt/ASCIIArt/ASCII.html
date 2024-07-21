@@ -3,7 +3,7 @@
 <html>
 
 <head>
-        <title>Unnamed</title>
+        <title>ASCII</title>
         <style>
                 pre {
                         font-family: 'consolas';
@@ -22,11 +22,12 @@
 </head>
 
 <body>
-        <!--canvas id='canvas'></canvas-->
         <pre id='target'></pre>
         <script>
-                WIDTH = window.innerWidth
-                HEIGHT = window.innerHeight
+                WIDTH = 0
+                HEIGHT = 0
+                ctx = null
+
                 // Character set from https://stackoverflow.com/a/74186686
                 chars = " `.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@";
                 darkness = [0, 0.0751, 0.0829, 0.0848, 0.1227, 0.1403, 0.1559, 0.185, 0.2183, 0.2417, 0.2571, 0.2852, 0.2902, 0.2919, 0.3099, 0.3192, 0.3232, 0.3294, 0.3384, 0.3609, 0.3619,
@@ -35,12 +36,10 @@
                         0.5999, 0.6043, 0.6049, 0.6093, 0.6099, 0.6465, 0.6561, 0.6595, 0.6631, 0.6714, 0.6759, 0.6809, 0.6816, 0.6925, 0.7039, 0.7086, 0.7235, 0.7302, 0.7332, 0.7602, 0.7834, 0.8037, 0.9999];
 
 
-                function getChar(ctx, x, y) {
-                        pix = ctx.getImageData(x, y, 1, 1).data;
-                        lum = 0.2126 * pix[0] / 255 + 0.7152 * pix[1] / 255 + 0.0722 * pix[2] / 255
-                        dark = 1-lum
+                function getChar(lum) {
+                        dark = 1 - lum
                         out = ' '
-                        min = 100
+                        min = Infinity
                         for (i = 0; i < darkness.length; i++) {
                                 if (Math.abs(darkness[i] - dark) < min) {
                                         min = Math.abs(darkness[i] - dark)
@@ -51,30 +50,31 @@
                 }
                 targ = document.getElementById('target')
                 navigator.mediaDevices.getUserMedia({ video: true })
-                        .then(function (stream) {
+                        .then(stream => {
                                 var video = document.createElement('video');
                                 video.srcObject = stream;
-                                video.play();
-                                var interval = 10;
-                                function captureImage() {
-                                        let width = video.videoWidth;
-                                        let height = video.videoHeight;
+                                video.play().then(function () {
+                                        WIDTH = video.videoWidth;
+                                        HEIGHT = video.videoHeight;
+                                        canvas = new OffscreenCanvas(WIDTH, HEIGHT);
+                                        ctx = canvas.getContext('2d', { willReadFrequently: true });
+                                });
 
-                                        let canvas = new OffscreenCanvas(width, height);
-                                        let ctx = canvas.getContext('2d', { willReadFrequently: true });
-                                        ctx.drawImage(video, 0, 0, width, height);
-                                        ctx.willReadFrequently = true
+                                function captureImage() {
+                                        ctx.drawImage(video, 0, 0, WIDTH, HEIGHT);
                                         s = ''
-                                        for (y = 0; y < height; y += 6) {
-                                                for (x = 0; x < width; x += 3) {
-                                                        s += getChar(ctx, x, y)
+                                        for (y = 0; y < HEIGHT; y += 2.6*3) {
+                                                for (x = 0; x < WIDTH; x += 3) {
+                                                        pix = ctx.getImageData(x, y, 1, 1).data;
+                                                        lum = 0.2126 * pix[0] / 255 + 0.7152 * pix[1] / 255 + 0.0722 * pix[2] / 255
+                                                        s += getChar(lum)
                                                 }
                                                 s += '\n'
                                         }
                                         targ.textContent = s
                                 }
 
-                                setInterval(captureImage, interval);
+                                setInterval(captureImage, 10);
                         })
                         .catch(function (err) {
                                 console.error("Error accessing the webcam:", err);
