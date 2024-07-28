@@ -19,7 +19,7 @@
 
                 pre {
                         font-family: 'Consolas';
-                        font-size: 7;
+                        font-size: 6;
                 }
 
                 body {
@@ -49,8 +49,8 @@
 
                 charLookup = []
                 function init() {
-                        for (k = 0; k < 256; k++) {
-                                dark = 1 - k / 256
+                        for (k = 0; k < 512; k++) {
+                                dark = 1 - k / 512
                                 out = ' '
                                 min = Infinity
                                 for (i = 0; i < darkness.length; i++) {
@@ -73,26 +73,39 @@
                                         HEIGHT = video.videoHeight;
                                         canvas = new OffscreenCanvas(WIDTH, HEIGHT);
                                         ctx = canvas.getContext('2d', { willReadFrequently: true });
+                                        setInterval(captureImage, 10);
                                 });
 
+                                let count = 0;
+                                let sum = 0;
+
                                 function captureImage() {
+                                        const start = performance.now();
+
                                         ctx.drawImage(video, 0, 0, WIDTH, HEIGHT);
                                         s = ''
-                                        for (y = 0; y < HEIGHT; y += 2.6 * 3) {
-                                                for (x = 0; x < WIDTH; x += 3) {
+                                        for (y = 0; y < HEIGHT; y += 2.6 * 2.9) {
+                                                for (x = 0; x < WIDTH; x += 2.9) {
                                                         pix = ctx.getImageData(x, y, 1, 1).data;
                                                         lum = 0.2126 * pix[0] + 0.7152 * pix[1] + 0.0722 * pix[2] //Luminous value from 0 to 256
-                                                        s += charLookup[Math.floor(lum)] //charLookup contains entries from 0 to 255, error for white?
+                                                        s += charLookup[Math.floor(lum*2)] //charLookup contains entries from 0 to 255, error for white?
                                                 }
                                                 s += '\n'
                                         }
                                         targ.textContent = s
+
+                                        const end = performance.now();
+                                        const runtime = end - start;
+
+                                        count++;
+                                        sum += runtime;
+
+                                        console.log(`Average runtime: ${sum / count} ms`);
                                 }
 
-                                setInterval(captureImage, 10);
                         })
                         .catch(function (err) {
-                                console.error("Error accessing the webcam:", err);
+                                window.alert("Error accessing the webcam:", err);
                         });
 
 
