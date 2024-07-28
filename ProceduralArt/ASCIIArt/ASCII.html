@@ -1,5 +1,6 @@
 <!--This is not ready yet, trying out new ideas-->
 
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -17,24 +18,35 @@
                         font-style: normal;
                 }
 
+                html,
+                body,
+                .container {
+                        height: 100%;
+                }
+
+                .container{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                }
+
                 pre {
                         font-family: 'Consolas';
-                        font-size: 6;
+                        font-size: 7px;
                 }
 
                 body {
                         margin: 0;
                         padding: 0;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
                         overflow: hidden;
                 }
         </style>
 </head>
 
 <body>
-        <pre id='target'></pre>
+        <div class="container">
+                <pre id='target'></pre>
+        </div>
         <script>
                 WIDTH = 0
                 HEIGHT = 0
@@ -73,33 +85,32 @@
                                         HEIGHT = video.videoHeight;
                                         canvas = new OffscreenCanvas(WIDTH, HEIGHT);
                                         ctx = canvas.getContext('2d', { willReadFrequently: true });
-                                        setInterval(captureImage, 10);
+                                        setInterval(captureImage, 50);
                                 });
 
-                                let count = 0;
-                                let sum = 0;
+                                let count = 0;//dbg
+                                let sum = 0;//dbg
 
                                 function captureImage() {
-                                        const start = performance.now();
+                                        const start = performance.now();//dbg
 
                                         ctx.drawImage(video, 0, 0, WIDTH, HEIGHT);
                                         s = ''
                                         for (y = 0; y < HEIGHT; y += 2.6 * 2.9) {
-                                                for (x = 0; x < WIDTH; x += 2.9) {
+                                                for (x = WIDTH - 1; x > 0; x -= 2.9) {
                                                         pix = ctx.getImageData(x, y, 1, 1).data;
                                                         lum = 0.2126 * pix[0] + 0.7152 * pix[1] + 0.0722 * pix[2] //Luminous value from 0 to 256
-                                                        s += charLookup[Math.floor(lum*2)] //charLookup contains entries from 0 to 255, error for white?
+                                                        s += charLookup[Math.floor(lum * 2)] //charLookup contains entries from 0 to 255, error for white?
                                                 }
                                                 s += '\n'
                                         }
                                         targ.textContent = s
 
+                                        //dbg:
                                         const end = performance.now();
                                         const runtime = end - start;
-
                                         count++;
                                         sum += runtime;
-
                                         console.log(`Average runtime: ${sum / count} ms`);
                                 }
 
