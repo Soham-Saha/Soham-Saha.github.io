@@ -1,0 +1,66 @@
+<!-- Not ready yet...-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+        <title>VFSim</title>
+        <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+        <canvas id='canv'></canvas>
+        <script>
+                PT_COUNT = 1000
+                const WIDTH = window.innerWidth;
+                const HEIGHT = window.innerHeight;
+
+                document.body.style.background = 'rgb(252, 252, 229)';
+                const canv = document.getElementById('canv');
+                const ctx = canv.getContext('2d');
+                canv.width = 500;
+                canv.height = 500;
+
+                s = new Float32Array(PT_COUNT * 2)
+                for (i = 0; i < PT_COUNT * 2; i += 2) {
+                        s[i] = Math.random() * canv.width;
+                        s[i + 1] = Math.random() * canv.height;
+                }
+                function viewUpdater() {
+                        ctx.fillStyle = 'rgba(252, 252, 229,0.05)'
+                        ctx.fillRect(0, 0, canv.width, canv.height)
+                        ctx.fillStyle = 'rgb(92, 1, 1)'
+                        for (i = 0; i < PT_COUNT * 2; i += 2) {
+                                ctx.beginPath()
+                                ctx.beginPath();
+                                ctx.arc(s[i], s[i + 1], 1, 0, 2 * Math.PI);
+                                ctx.fill()
+                        }
+
+                }
+                var t=0
+                function pointUpdater() {
+                  t++
+                        for (i = 0; i < s.length; i += 2) {
+                                vx = -(s[i+1]-canv.height/2)*Math.cos(t/200)/50;
+                                vy = (s[i]-canv.width/2)*Math.cos(t/200)/50;
+                                s[i] = s[i] + vx * 0.5;
+                                s[i + 1] = s[i + 1] + vy * 0.5;
+                                if (Math.random() < 0.01) {
+                                        s[i] = (Math.random()*1.2-0.1) * canv.width;
+                                        s[i + 1] = (Math.random()*1.2-0.1) * canv.height;
+                                }
+                        }
+                }
+                function update() {
+                        pointUpdater();
+                        viewUpdater();
+                        requestAnimationFrame(update);
+                }
+                
+                update();
+
+        </script>
+</body>
+
+</html>
