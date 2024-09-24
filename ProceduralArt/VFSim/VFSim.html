@@ -18,8 +18,8 @@
                 document.body.style.background = 'rgb(252, 252, 229)';
                 const canv = document.getElementById('canv');
                 const ctx = canv.getContext('2d');
-                canv.width = 500;
-                canv.height = 500;
+                canv.width = WIDTH;
+                canv.height = HEIGHT;
 
                 s = new Float32Array(PT_COUNT * 2)
                 for (i = 0; i < PT_COUNT * 2; i += 2) {
