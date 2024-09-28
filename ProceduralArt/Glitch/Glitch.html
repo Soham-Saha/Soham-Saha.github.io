@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <title>Glitch</title>
+        <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+        <canvas id='canv'></canvas>
+        <script>
+                const PT_COUNT = 100
+                const WIDTH = window.innerWidth;
+                const HEIGHT = window.innerHeight;
+                const r = Math.min(WIDTH,HEIGHT)*0.40;
+
+                document.body.style.background = 'black';
+                const canv = document.getElementById('canv');
+                const ctx = canv.getContext('2d');
+                canv.width = WIDTH;
+                canv.height = HEIGHT;
+
+                const x = new Float32Array(PT_COUNT);
+                const y = new Float32Array(PT_COUNT);
+                const vx = new Float32Array(PT_COUNT);
+                const vy = new Float32Array(PT_COUNT);
+                for (i = 0; i < PT_COUNT; i++) {
+                        x[i] = Math.cos(2 * Math.PI * i / PT_COUNT) * r;
+                        y[i] = Math.sin(2 * Math.PI * i / PT_COUNT) * r;
+                        vx[i] = 0;
+                        vy[i] = 0;
+                }
+                y[3 * PT_COUNT / 4] += 200;
+                const target_len = 2 * Math.sin(Math.PI / PT_COUNT) * r
+
+                function updateData() {
+                        for (i = 0; i < PT_COUNT; i++) {
+                                l = Math.sqrt(x[i] * x[i] + y[i] * y[i])
+                                lnew = l + (r - l) * 0.01
+                                x[i] = x[i] * lnew / l;
+                                y[i] = y[i] * lnew / l;
+                                x[i]+=vx[i]*30
+                                y[i]+=vy[i]*30
+                        }
+                        for (i = 0; i < 1000; i++) {
+                                //chooses random link between 'link' and 'link'+1 nodes
+                                link = Math.floor(Math.random() * PT_COUNT);
+                                a = link
+                                b = (link + 1) % PT_COUNT
+                                xdiff = x[b] - x[a]
+                                ydiff = y[b] - y[a]
+                                len = Math.sqrt(xdiff * xdiff + ydiff * ydiff)//Is sqrt really needed?
+                                diffxa=(x[a] + x[b]) / 2 - xdiff * target_len / (len * 2)-x[a]
+                                diffxb=(x[a] + x[b]) / 2 + xdiff * target_len / (len * 2)-x[b]
+                                diffya=(y[a] + y[b]) / 2 - ydiff * target_len / (len * 2)-y[a]
+                                diffyb=(y[a] + y[b]) / 2 + ydiff * target_len / (len * 2)-y[b]
+
+                                vmax=15
+                                vx[a]=Math.max(Math.min(diffxa,vmax),-vmax)
+                                vx[b]=Math.max(Math.min(diffxb,vmax),-vmax)
+                                vy[a]=Math.max(Math.min(diffya,vmax),-vmax)
+                                vy[b]=Math.max(Math.min(diffyb,vmax),-vmax)
+
+                                x[a]+=diffxa
+                                x[b]+=diffxb
+                                y[a]+=diffya
+                                y[b]+=diffyb
+                        }
+                }
+
+                function updateScreen() {
+                        ctx.fillStyle = 'black'
+                        ctx.fillRect(0, 0, WIDTH, HEIGHT)
+                        ctx.fillStyle = 'red'
+                        for (i = 0; i < PT_COUNT; i++) {
+                                ctx.fillRect(x[i] - 1 + WIDTH / 2, y[i] - 1 + HEIGHT / 2, 2, 2);
+                        }
+                        updateData();
+                        requestAnimationFrame(updateScreen);
+                }
+
+                requestAnimationFrame(updateScreen);
+
+        </script>
+</body>
+
+</html>

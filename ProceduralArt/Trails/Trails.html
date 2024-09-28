@@ -1,0 +1,66 @@
+<!--Not ready yet-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+        <title>Trails</title>
+        <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+        <canvas id='canv'></canvas>
+        <script>
+                const PT_COUNT = 150
+                const rad = 200;
+                const WIDTH = window.innerWidth;
+                const HEIGHT = window.innerHeight;
+
+                document.body.style.background = 'black';
+                const canv = document.getElementById('canv');
+                const ctx = canv.getContext('2d');
+                canv.width = WIDTH;
+                canv.height = HEIGHT;
+
+                const r = new Float32Array(PT_COUNT);
+                const theta = new Float32Array(PT_COUNT);
+
+                function init() {
+                        for (i = 0; i < PT_COUNT; i++) {
+                                r[i] = rad;
+                                theta[i] = 2 * Math.PI * i / PT_COUNT;
+                        }
+                }
+
+                init();
+                var limit = 50
+                var state = true
+                function updateData() {
+                        for (i = 0; i < PT_COUNT; i++) {
+                                r[i] = r[i] * (1 - Math.random() * 0.01)
+                                theta[i] += (Math.random() - 0.5) * 0.01
+                                if (r[i] < limit) {
+                                        state = false
+                                }
+                        }
+                }
+
+                function updateScreen() {
+                        if (state) {
+                                ctx.fillStyle = 'rgba(0,0,0,0.005)'
+                                ctx.fillRect(0, 0, WIDTH, HEIGHT)
+                                ctx.fillStyle = 'red'
+                                for (i = 0; i < PT_COUNT; i++) {
+                                        ctx.fillRect(r[i] * Math.cos(theta[i]) - 0.5 + WIDTH / 2, r[i] * Math.sin(theta[i]) - 0.5 + HEIGHT / 2, 1, 1);
+                                }
+                                updateData();
+                                requestAnimationFrame(updateScreen);
+                        }
+
+                }
+
+                requestAnimationFrame(updateScreen);
+        </script>
+</body>
+
+</html>
