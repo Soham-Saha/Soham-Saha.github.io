@@ -1,116 +1,129 @@
 <!DOCTYPE html>
 <html>
-        <body>
-                <canvas id="canv"></canvas>
-                <script type="text/javascript">
 
-                        //4D point and rotation system
-                        function rotA(a,b,t){
-                                return Math.cos(t)*a-Math.sin(t)*b;
+<head>
+        <title>Tesseract</title>
+        <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+        <canvas id="canv"></canvas>
+        <script type="text/javascript">
+                const WIDTH = window.innerWidth;
+                const HEIGHT = window.innerHeight;
+
+                document.body.style.background = 'black';
+                const canv = document.getElementById('canv');
+                const ctx = canv.getContext('2d');
+                canv.width = WIDTH;
+                canv.height = HEIGHT;
+
+
+                //4D point and rotation system
+                function rotA(a, b, t) {
+                        return Math.cos(t) * a - Math.sin(t) * b;
+                }
+                function rotB(a, b, t) {
+                        return Math.sin(t) * a + Math.cos(t) * b;
+                }
+                class Point {
+                        w = 0
+                        x = 0
+                        y = 0
+                        z = 0
+                        constructor(x, y, z, w) {
+                                this.x = x;
+                                this.y = y;
+                                this.z = z;
+                                this.w = w;
                         }
-                        function rotB(a,b,t){
-                                return Math.sin(t)*a+Math.cos(t)*b;
+                        rotate(wx, zw, wy, xy, yz, xz) {
+                                let tmp = this.w
+                                this.w = rotA(tmp, this.x, wx)
+                                this.x = rotB(tmp, this.x, wx)
+
+                                tmp = this.x
+                                this.x = rotA(tmp, this.y, xy)
+                                this.y = rotB(tmp, this.y, xy)
+
+                                tmp = this.y
+                                this.y = rotA(tmp, this.z, yz)
+                                this.z = rotB(tmp, this.z, yz)
+
+                                tmp = this.z
+                                this.z = rotA(tmp, this.w, zw)
+                                this.w = rotB(tmp, this.w, zw)
+
+                                tmp = this.x
+                                this.x = rotA(tmp, this.z, xz)
+                                this.z = rotB(tmp, this.z, xz)
+
+                                tmp = this.w
+                                this.w = rotA(tmp, this.y, wy)
+                                this.y = rotB(tmp, this.y, wy)
                         }
-                        class Point{
-                                w=0
-                                x=0
-                                y=0
-                                z=0
-                                constructor(x,y,z,w){
-                                        this.x=x;
-                                        this.y=y;
-                                        this.z=z;
-                                        this.w=w;
-                                }
-                                rotate(wx,zw,wy,xy,yz,xz){
-                                        let tmp=this.w
-                                        this.w=rotA(tmp,this.x,wx)
-                                        this.x=rotB(tmp,this.x,wx)
+                }
 
-                                        tmp=this.x
-                                        this.x=rotA(tmp,this.y,xy)
-                                        this.y=rotB(tmp,this.y,xy)
-
-                                        tmp=this.y
-                                        this.y=rotA(tmp,this.z,yz)
-                                        this.z=rotB(tmp,this.z,yz)
-
-                                        tmp=this.z
-                                        this.z=rotA(tmp,this.w,zw)
-                                        this.w=rotB(tmp,this.w,zw)
-
-                                        tmp=this.x
-                                        this.x=rotA(tmp,this.z,xz)
-                                        this.z=rotB(tmp,this.z,xz)
-
-                                        tmp=this.w
-                                        this.w=rotA(tmp,this.y,wy)
-                                        this.y=rotB(tmp,this.y,wy)
-                                }
-                        }
-
-                        //Initialize vertices and connections
-                        let data=[]
-                        for(i=-1;i<2;i+=2){
-                                for(j=-1;j<2;j+=2){
-                                        for(k=-1;k<2;k+=2){
-                                                for(l=-1;l<2;l+=2){
-                                                        data.push(new Point(i,j,k,l))
-                                                }
+                //Initialize vertices and connections
+                let data = []
+                for (i = -1; i < 2; i += 2) {
+                        for (j = -1; j < 2; j += 2) {
+                                for (k = -1; k < 2; k += 2) {
+                                        for (l = -1; l < 2; l += 2) {
+                                                data.push(new Point(i, j, k, l))
                                         }
                                 }
                         }
-                        let connections=[]
-                        for(i=0;i<16;i++){
-                                for(j=i+1;j<16;j++){
-                                        sum=Math.abs(data[i].x-data[j].x)
-                                        sum+=Math.abs(data[i].y-data[j].y)
-                                        sum+=Math.abs(data[i].z-data[j].z)
-                                        sum+=Math.abs(data[i].w-data[j].w)
-                                        if(sum==2){
-                                                if(Math.abs(data[i].w-data[j].w)==2){
-                                                        connections.push([i,j,`red`])
-                                                }else if(data[i].w==1){
-                                                        connections.push([i,j,`green`])
-                                                }else{
-                                                        connections.push([i,j,`blue`])
-                                                }
+                }
+                let connections = []
+                for (i = 0; i < 16; i++) {
+                        for (j = i + 1; j < 16; j++) {
+                                sum = Math.abs(data[i].x - data[j].x)
+                                sum += Math.abs(data[i].y - data[j].y)
+                                sum += Math.abs(data[i].z - data[j].z)
+                                sum += Math.abs(data[i].w - data[j].w)
+                                if (sum == 2) {
+                                        
+                                        if (Math.abs(data[i].w - data[j].w) == 2) {
+                                                connections.push([i, j, `#FEDA14`])
+                                        } else if (data[i].w == 1) {
+                                                connections.push([i, j, `#39FF14`])
+                                        } else {
+                                                connections.push([i, j, `#14fE64`])
                                         }
                                 }
                         }
+                }
 
-                        //Projection function
-                        function plane(p){
-                                return [p.x*2000/((3.5-p.w)*(10-p.z))+200,p.y*2000/((3.5-p.w)*(10-p.z))+200]
-                        }
+                //Projection function
+                function plane(p) {
+                        return [p.x * 2000 / ((3.5 - p.w) * (10 - p.z))+WIDTH/2, p.y * 2000 / ((3.5 - p.w) * (10 - p.z))+HEIGHT/2]
+                }
 
-                        //Animation
-                        canv=document.getElementById('canv')
-                        canv.width=400
-                        canv.height=400
-                        ctx=canv.getContext('2d')
-                        data.map(x=>x.rotate(0.0,0.0,0.0,0.,0,0.0))
-                        function anim(){
-                                data.map(x=>x.rotate(0.0,0.0,0.01,0.0,0.0,0.01))
-                                ctx.fillStyle='white'
-                                ctx.fillRect(0,0,1000,1000)
-                                data.forEach(x=>{
-                                        ctx.fillStyle='black'
-                                        pt=plane(x)
-                                        ctx.fillRect(pt[0]-2,pt[1]-2,4,4)
-                                })
-                                connections.forEach(x=>{
-                                        ctx.strokeStyle=x[2]
-                                        ctx.beginPath();
-                                        pt1=plane(data[x[0]])
-                                        pt2=plane(data[x[1]])
-                                        ctx.moveTo(pt1[0], pt1[1]);
-                                        ctx.lineTo(pt2[0], pt2[1]);
-                                        ctx.stroke();
-                                })
-                                requestAnimationFrame(anim)
-                        }
+                //Animation
+                data.map(x => x.rotate(0.0, 0.0, 0.0, 0., 0, 0.0))
+                function anim() {
+                        data.map(x => x.rotate(0.0, 0.0, 0.01, 0.0, 0.0, 0.01))
+                        ctx.fillStyle = 'black'
+                        ctx.fillRect(0, 0, 1000, 1000)
+                        data.forEach(x => {
+                                ctx.fillStyle = 'white'
+                                pt = plane(x)
+                                ctx.fillRect(pt[0] - 2, pt[1] - 2, 4, 4)
+                        })
+                        connections.forEach(x => {
+                                ctx.strokeStyle = x[2]
+                                ctx.beginPath();
+                                pt1 = plane(data[x[0]])
+                                pt2 = plane(data[x[1]])
+                                ctx.moveTo(pt1[0], pt1[1]);
+                                ctx.lineTo(pt2[0], pt2[1]);
+                                ctx.stroke();
+                        })
                         requestAnimationFrame(anim)
-                </script>
-        </body>
+                }
+                requestAnimationFrame(anim)
+        </script>
+</body>
+
 </html>

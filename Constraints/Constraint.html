@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <title>Constraint</title>
+        <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+        <canvas id='canv'></canvas>
+        <script>
+                const PT_COUNT = 100
+                const WIDTH = window.innerWidth;
+                const HEIGHT = window.innerHeight;
+                const r = Math.min(WIDTH, HEIGHT) * 0.25;
+
+                document.body.style.background = 'black';
+                const canv = document.getElementById('canv');
+                const ctx = canv.getContext('2d');
+                canv.width = WIDTH;
+                canv.height = HEIGHT;
+
+                const x = new Float32Array(PT_COUNT);
+                const y = new Float32Array(PT_COUNT);
+                for (i = 0; i < PT_COUNT; i++) {
+                        x[i] = Math.cos(2 * Math.PI * i / PT_COUNT) * r;
+                        y[i] = Math.sin(2 * Math.PI * i / PT_COUNT) * r;
+                }
+                //y[3 * PT_COUNT / 4] += 200;
+                const target_len = 2 * Math.sin(Math.PI / PT_COUNT) * r
+
+                function updateData() {
+                        for (i = 0; i < PT_COUNT; i++) {
+                                if (i != Math.floor(7 * PT_COUNT / 8) && i != Math.floor(6 * PT_COUNT / 8)) {
+                                        y[i] = y[i] + 0.5;
+                                }
+                        }
+                        for (i = 0; i < 1000; i++) {
+                                //chooses random link between 'link' and 'link'+1 nodes
+                                link = Math.floor(Math.random() * PT_COUNT);
+                                a = link
+                                b = (link + 1) % PT_COUNT
+                                xdiff = x[b] - x[a]
+                                ydiff = y[b] - y[a]
+                                xa=x[a]
+                                ya=y[a]
+                                xb=x[b]
+                                yb=y[b]
+                                len = Math.sqrt(xdiff * xdiff + ydiff * ydiff)//Is sqrt really needed?
+
+                                if (a !=Math.floor(7 * PT_COUNT / 8) && a!=Math.floor(6 * PT_COUNT / 8)) {
+                                        x[a] = (xa + xb) / 2 - xdiff * target_len / (len * 2)
+                                        y[a] = (ya+ yb) / 2 - ydiff * target_len / (len * 2)
+                                }
+                                if (b !=Math.floor(7 * PT_COUNT / 8) && b!=Math.floor(6 * PT_COUNT / 8)) {
+                                        x[b] = (xa + xb) / 2 + xdiff * target_len / (len * 2)
+                                        y[b] = (ya + yb) / 2 + ydiff * target_len / (len * 2)
+                                }
+                        }
+                }
+
+                function updateScreen() {
+                        ctx.fillStyle = 'rgba(0,0,0,1)'
+                        ctx.fillRect(0, 0, WIDTH, HEIGHT)
+                        ctx.fillStyle = 'red'
+                        for (i = 0; i < PT_COUNT; i++) {
+                                ctx.fillRect(x[i] - 1 + WIDTH / 2, y[i] - 1 + HEIGHT / 2, 2, 2);
+                        }
+                        updateData();
+                        requestAnimationFrame(updateScreen);
+                }
+
+                requestAnimationFrame(updateScreen);
+
+        </script>
+</body>
+
+</html>
