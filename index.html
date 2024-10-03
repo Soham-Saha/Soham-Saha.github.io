@@ -9,35 +9,42 @@
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
-            color: #333;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f4f4f4;
+            background: black;
         }
 
         h1 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
+            color: #e2e6eb;
+            border-bottom: 2px solid #dde3e7;
             padding-bottom: 10px;
         }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
+        .wrapper {
+            max-width: 940px;
+            margin: 0 auto;
         }
 
-        li {
-            margin-bottom: 15px;
-            background-color: #fff;
+        .wrapper>div {
+            border: 2px solid rgb(68, 68, 68);
             border-radius: 5px;
+            background-color: rgba(37, 37, 37, 0.5);
+            padding: 1em;
             overflow: hidden;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
 
-        li:hover {
+        .wrapper>div:hover {
             transform: translateY(-3px);
+        }
+
+        .wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            grid-auto-rows: minmax(100px, auto);
         }
 
         a {
@@ -47,26 +54,21 @@
             text-decoration: none;
             font-weight: bold;
         }
-
-        a:hover {
-            background-color: #ecf0f1;
-        }
     </style>
 </head>
 
 <body>
     <h1>Projects</h1>
-    <ul>
-        <!--<li><a href="VFSim/VFSim.html">Vector Field Simulator</a></li>-->
-        <li><a href="Tesseract/tess.html">Tesseract Visualization</a></li>
-        <li><a href="Tangled/Tangled.html">Procedural Art: Tangled</a></li>
-        <li><a href="Pulse/Pulse.html">Procedural Art: Pulse</a></li>
-        <li><a href="Symmetric/Symmetric.html">Procedural Art: Symmetric</a></li>
-        <li><a href="ASCIIArt/ASCII.html">ASCII Camera</a></li>
-        <li><a href="VFSim/VFSim.html">Procedural Art: Vector Field Simulator</a></li>
-        <li><a href="Glitch/Glitch.html">Procedural Art: Glitch</a></li>
-        <li><a href="Trails/Trails.html">Procedural Art: Trails</a></li>
-    </ul>
+    <div class="wrapper">
+        <div><a href="Tesseract/tess.html">Tesseract</a></div>
+        <div><a href="Pulse/Pulse.html">Pulse</a></div>
+        <div><a href="Tangled/Tangled.html">Tangled</a></div>
+        <div><a href="Symmetric/Symmetric.html">Symmetric</a></div>
+        <div><a href="ASCIIArt/ASCII.html">ASCII Camera</a></div>
+        <div><a href="VFSim/VFSim.html">Vector Field</a></div>
+        <div><a href="Glitch/Glitch.html">Glitch</a></div>
+        <div><a href="Trails/Trails.html">Trails</a></div>
+    </div>
 </body>
 
 </html>
