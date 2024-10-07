@@ -12,9 +12,9 @@
         <canvas id='canv'></canvas>
         <script>
                 const PT_COUNT = 150
-                const rad = 200;
                 const WIDTH = window.innerWidth;
                 const HEIGHT = window.innerHeight;
+                const rad = Math.min(WIDTH, HEIGHT)*0.8;
 
                 document.body.style.background = 'black';
                 const canv = document.getElementById('canv');
