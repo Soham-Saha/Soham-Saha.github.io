@@ -14,7 +14,7 @@
                 const PT_COUNT = 150
                 const WIDTH = window.innerWidth;
                 const HEIGHT = window.innerHeight;
-                const rad = 0.45*Math.min(WIDTH, HEIGHT);
+                const rad = 0.45 * Math.min(WIDTH, HEIGHT);
 
                 document.body.style.background = 'black';
                 const canv = document.getElementById('canv');
@@ -30,10 +30,12 @@
                                 r[i] = rad;
                                 theta[i] = 2 * Math.PI * i / PT_COUNT;
                         }
+                        ctx.fillStyle = 'black'
+                        ctx.fillRect(0, 0, WIDTH, HEIGHT)
                 }
 
                 init();
-                var limit = 50
+                var limit = rad / 4
                 var state = true
                 function updateData() {
                         for (i = 0; i < PT_COUNT; i++) {
@@ -55,8 +57,13 @@
                                 }
                                 updateData();
                                 requestAnimationFrame(updateScreen);
+                        } else {
+                                setTimeout(function () {
+                                        init();
+                                        state = true;
+                                        requestAnimationFrame(updateScreen);
+                                }, 3000);
                         }
-
                 }
 
                 requestAnimationFrame(updateScreen);

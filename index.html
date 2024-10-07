@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Some javascript experiments made by Soham Saha">
+    <meta name="keywords" content="Soham Saha, portfolio, web development, programming, projects, javascript, procedural art">
+    <meta name="author" content="Soham Saha">
     <title>Projects</title>
     <style>
         :root {
@@ -16,7 +20,7 @@
         }
 
         body {
-            font-family: 'Consolas',monospace;
+            font-family: 'Consolas', monospace;
             line-height: 1.6;
             max-width: 800px;
             margin: 0 auto;
@@ -65,7 +69,7 @@
         .name {
             font-size: x-large;
             margin-top: 0px;
-            margin-bottom:0px;
+            margin-bottom: 0px;
             color: var(--c4);
         }
 
@@ -96,7 +100,7 @@
     }
 
     links = new Array(0);
-    links.push(new Link("Tesseract", "Tesseract/tess.html", ));
+    links.push(new Link("Tesseract", "Tesseract/tess.html",));
     links.push(new Link("Pulse", "Pulse/Pulse.html",));
     links.push(new Link("Tangled", "Tangled/Tangled.html",));
     links.push(new Link("Symmetric", "Symmetric/Symmetric.html",));
@@ -107,7 +111,7 @@
 
     links.forEach(link => {
         document.getElementById("linkSet").innerHTML += "<a href=\"" + link.target + "\"><div class=\"link\"><p class=\"name\">"
-            + link.name + "</p>"+(link.desc!=null?"<p class=\"desc\">" + link.desc + "</p>":"")+"</div></a>";
+            + link.name + "</p>" + (link.desc != null ? "<p class=\"desc\">" + link.desc + "</p>" : "") + "</div></a>";
     });
 
 </script>
