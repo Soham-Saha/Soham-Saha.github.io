@@ -7,7 +7,6 @@
     <title>Projects</title>
     <style>
         :root {
-            /* https://colors.dopely.top/inside-colors/black-color-palette-inspirations-with-names-hex-codes/ */
             --c1: #000000;
             --c2: hsl(0, 0%, 9%);
             --c3: hsl(0, 0%, 20%);
@@ -16,9 +15,8 @@
 
         }
 
-
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Consolas',monospace;
             line-height: 1.6;
             max-width: 800px;
             margin: 0 auto;
@@ -29,57 +27,90 @@
         h1 {
             color: var(--c5);
             border-bottom: 2px solid var(--c5);
-            padding-bottom: 10px;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+            font-size: xx-large;
         }
 
-        .wrapper {
-            max-width: 940px;
+        #linkSet {
+            max-width: 800px;
             margin: 0 auto;
+            display: grid;
+            /**grid-template-columns: repeat(3, 1fr); Enable if you want multiple columns**/
+            gap: 15px;
         }
 
-        .wrapper>div {
+        .link {
             border: 2px solid var(--c2);
             border-radius: 5px;
             background-color: var(--c2);
-            padding: 1em;
+            padding: 20px;
+            padding-top: 15px;
+            padding-bottom: 15px;
             overflow: hidden;
-            box-shadow: 0 2px 5px var(--c2);
+            box-shadow: 0 2px 5px var(--c1);
             transition: transform 0.3s ease;
         }
 
-        .wrapper>div:hover {
+        .link:hover {
             transform: translateY(-3px);
-        }
-
-        .wrapper {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            grid-auto-rows: minmax(100px, auto);
         }
 
         a {
             display: block;
-            padding: 15px;
-            color: var(--c4);
             text-decoration: none;
             font-weight: bold;
+        }
+
+        .name {
+            font-size: x-large;
+            margin-top: 0px;
+            margin-bottom:0px;
+            color: var(--c4);
+        }
+
+        .desc {
+            margin-top: 10px;
+            margin-bottom: 0px;
+            color: var(--c4);
         }
     </style>
 </head>
 
 <body>
-    <h1>Projects</h1>
-    <div class="wrapper">
-        <div><a href="Tesseract/tess.html">Tesseract</a></div>
-        <div><a href="Pulse/Pulse.html">Pulse</a></div>
-        <div><a href="Tangled/Tangled.html">Tangled</a></div>
-        <div><a href="Symmetric/Symmetric.html">Symmetric</a></div>
-        <div><a href="ASCIIArt/ASCII.html">ASCII Camera</a></div>
-        <div><a href="VFSim/VFSim.html">Vector Field</a></div>
-        <div><a href="Glitch/Glitch.html">Glitch</a></div>
-        <div><a href="Trails/Trails.html">Trails</a></div>
+    <div id="linkSet">
+        <h1>Projects</h1>
     </div>
 </body>
+
+<script type="text/javascript">
+
+    class Link {
+        name = "";
+        target = "";
+        desc = "";
+        constructor(name, target, desc) {
+            this.name = name;
+            this.target = target;
+            this.desc = desc;
+        }
+    }
+
+    links = new Array(0);
+    links.push(new Link("Tesseract", "Tesseract/tess.html", ));
+    links.push(new Link("Pulse", "Pulse/Pulse.html",));
+    links.push(new Link("Tangled", "Tangled/Tangled.html",));
+    links.push(new Link("Symmetric", "Symmetric/Symmetric.html",));
+    links.push(new Link("ASCII Camera", "ASCIIArt/ASCII.html",));
+    links.push(new Link("Vector Field", "VFSim/VFSim.html",));
+    links.push(new Link("Glitch", "Glitch/Glitch.html",));
+    links.push(new Link("Trails", "Trails/Trails.html",));
+
+    links.forEach(link => {
+        document.getElementById("linkSet").innerHTML += "<a href=\"" + link.target + "\"><div class=\"link\"><p class=\"name\">"
+            + link.name + "</p>"+(link.desc!=null?"<p class=\"desc\">" + link.desc + "</p>":"")+"</div></a>";
+    });
+
+</script>
 
 </html>
