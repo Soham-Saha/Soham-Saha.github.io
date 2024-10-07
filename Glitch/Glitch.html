@@ -2,6 +2,17 @@
 <html>
 
 <head>
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-64ZC9D41C9"></script>
+        <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+                gtag('js', new Date());
+
+                gtag('config', 'G-64ZC9D41C9');
+        </script>
+
         <title>Glitch</title>
         <link rel="stylesheet" href="../styles.css">
 </head>
@@ -12,7 +23,7 @@
                 const PT_COUNT = 100
                 const WIDTH = window.innerWidth;
                 const HEIGHT = window.innerHeight;
-                const r = Math.min(WIDTH,HEIGHT)*0.40;
+                const r = Math.min(WIDTH, HEIGHT) * 0.40;
 
                 document.body.style.background = 'black';
                 const canv = document.getElementById('canv');
@@ -39,8 +50,8 @@
                                 lnew = l + (r - l) * 0.01
                                 x[i] = x[i] * lnew / l;
                                 y[i] = y[i] * lnew / l;
-                                x[i]+=vx[i]*30
-                                y[i]+=vy[i]*30
+                                x[i] += vx[i] * 30
+                                y[i] += vy[i] * 30
                         }
                         for (i = 0; i < 1000; i++) {
                                 //chooses random link between 'link' and 'link'+1 nodes
@@ -50,26 +61,26 @@
                                 xdiff = x[b] - x[a]
                                 ydiff = y[b] - y[a]
                                 len = Math.sqrt(xdiff * xdiff + ydiff * ydiff)//Is sqrt really needed?
-                                diffxa=(x[a] + x[b]) / 2 - xdiff * target_len / (len * 2)-x[a]
-                                diffxb=(x[a] + x[b]) / 2 + xdiff * target_len / (len * 2)-x[b]
-                                diffya=(y[a] + y[b]) / 2 - ydiff * target_len / (len * 2)-y[a]
-                                diffyb=(y[a] + y[b]) / 2 + ydiff * target_len / (len * 2)-y[b]
+                                diffxa = (x[a] + x[b]) / 2 - xdiff * target_len / (len * 2) - x[a]
+                                diffxb = (x[a] + x[b]) / 2 + xdiff * target_len / (len * 2) - x[b]
+                                diffya = (y[a] + y[b]) / 2 - ydiff * target_len / (len * 2) - y[a]
+                                diffyb = (y[a] + y[b]) / 2 + ydiff * target_len / (len * 2) - y[b]
 
-                                vmax=15
-                                vx[a]=Math.max(Math.min(diffxa,vmax),-vmax)
-                                vx[b]=Math.max(Math.min(diffxb,vmax),-vmax)
-                                vy[a]=Math.max(Math.min(diffya,vmax),-vmax)
-                                vy[b]=Math.max(Math.min(diffyb,vmax),-vmax)
+                                vmax = 15
+                                vx[a] = Math.max(Math.min(diffxa, vmax), -vmax)
+                                vx[b] = Math.max(Math.min(diffxb, vmax), -vmax)
+                                vy[a] = Math.max(Math.min(diffya, vmax), -vmax)
+                                vy[b] = Math.max(Math.min(diffyb, vmax), -vmax)
 
-                                x[a]+=diffxa
-                                x[b]+=diffxb
-                                y[a]+=diffya
-                                y[b]+=diffyb
+                                x[a] += diffxa
+                                x[b] += diffxb
+                                y[a] += diffya
+                                y[b] += diffyb
                         }
                 }
 
                 function updateScreen() {
-                        ctx.fillStyle ='rgba(0,0,0,0.1)'
+                        ctx.fillStyle = 'rgba(0,0,0,0.1)'
                         ctx.fillRect(0, 0, WIDTH, HEIGHT)
                         ctx.fillStyle = 'red'
                         for (i = 0; i < PT_COUNT; i++) {

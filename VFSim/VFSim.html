@@ -4,6 +4,17 @@
 <html>
 
 <head>
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-64ZC9D41C9"></script>
+        <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+                gtag('js', new Date());
+
+                gtag('config', 'G-64ZC9D41C9');
+        </script>
+
         <title>VFSim</title>
         <link rel="stylesheet" href="../styles.css">
 </head>
@@ -26,12 +37,12 @@
                         s[i] = Math.random() * canv.width;
                         s[i + 1] = Math.random() * canv.height;
                 }
-                v=new Float32Array(PT_COUNT);
+                v = new Float32Array(PT_COUNT);
                 function viewUpdater() {
                         ctx.fillStyle = 'rgba(0,0,0,0.02)'
                         ctx.fillRect(0, 0, canv.width, canv.height)
                         for (i = 0; i < PT_COUNT * 2; i += 2) {
-                                ctx.fillStyle = 'HSL('+(v[i/2]*1.4+160)+',100%,50%)'
+                                ctx.fillStyle = 'HSL(' + (v[i / 2] * 1.4 + 160) + ',100%,50%)'
                                 ctx.beginPath()
                                 ctx.beginPath();
                                 ctx.arc(s[i], s[i + 1], 1, 0, 2 * Math.PI);
@@ -40,19 +51,19 @@
 
                 }
                 var t = 0
-                function velx(x, y, t){
-                        return Math.log(Math.abs(y/60)+0.2)*2;
+                function velx(x, y, t) {
+                        return Math.log(Math.abs(y / 60) + 0.2) * 2;
                 }
-                function vely(x, y, t){
-                        return Math.log(Math.abs(x/60)+0.2)*2;
+                function vely(x, y, t) {
+                        return Math.log(Math.abs(x / 60) + 0.2) * 2;
                 }
 
                 function pointUpdater() {
                         t++
                         for (i = 0; i < s.length; i += 2) {
-                                vx=velx(s[i]-WIDTH/2,s[i+1]-HEIGHT/2,t);
-                                vy=vely(s[i]-WIDTH/2,s[i+1]-HEIGHT/2,t);
-                                v[i/2]=vx*vx+vy*vy;
+                                vx = velx(s[i] - WIDTH / 2, s[i + 1] - HEIGHT / 2, t);
+                                vy = vely(s[i] - WIDTH / 2, s[i + 1] - HEIGHT / 2, t);
+                                v[i / 2] = vx * vx + vy * vy;
                                 s[i] = s[i] + vx * 0.5;
                                 s[i + 1] = s[i + 1] + vy * 0.5;
                                 if (Math.random() < 0.01) {

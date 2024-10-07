@@ -2,6 +2,17 @@
 <html>
 
 <head>
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-64ZC9D41C9"></script>
+        <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+                gtag('js', new Date());
+
+                gtag('config', 'G-64ZC9D41C9');
+        </script>
+
         <title>Constraint</title>
         <link rel="stylesheet" href="../styles.css">
 </head>
@@ -42,17 +53,17 @@
                                 b = (link + 1) % PT_COUNT
                                 xdiff = x[b] - x[a]
                                 ydiff = y[b] - y[a]
-                                xa=x[a]
-                                ya=y[a]
-                                xb=x[b]
-                                yb=y[b]
+                                xa = x[a]
+                                ya = y[a]
+                                xb = x[b]
+                                yb = y[b]
                                 len = Math.sqrt(xdiff * xdiff + ydiff * ydiff)//Is sqrt really needed?
 
-                                if (a !=Math.floor(7 * PT_COUNT / 8) && a!=Math.floor(6 * PT_COUNT / 8)) {
+                                if (a != Math.floor(7 * PT_COUNT / 8) && a != Math.floor(6 * PT_COUNT / 8)) {
                                         x[a] = (xa + xb) / 2 - xdiff * target_len / (len * 2)
-                                        y[a] = (ya+ yb) / 2 - ydiff * target_len / (len * 2)
+                                        y[a] = (ya + yb) / 2 - ydiff * target_len / (len * 2)
                                 }
-                                if (b !=Math.floor(7 * PT_COUNT / 8) && b!=Math.floor(6 * PT_COUNT / 8)) {
+                                if (b != Math.floor(7 * PT_COUNT / 8) && b != Math.floor(6 * PT_COUNT / 8)) {
                                         x[b] = (xa + xb) / 2 + xdiff * target_len / (len * 2)
                                         y[b] = (ya + yb) / 2 + ydiff * target_len / (len * 2)
                                 }

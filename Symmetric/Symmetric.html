@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-64ZC9D41C9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-64ZC9D41C9');
+    </script>
+
     <title>Symmetric</title>
     <link rel="stylesheet" href="../styles.css">
 </head>
+
 <body>
     <canvas id='canv'></canvas>
     <script>
@@ -28,13 +41,13 @@
         }
 
         let targets = [];
-        let colors=[];
-        for(i=0;i<NUM_POINTS;i++){
-            colors.push('#'+(Math.random()*0xFFFFFF<<0).toString(16));
+        let colors = [];
+        for (i = 0; i < NUM_POINTS; i++) {
+            colors.push('#' + (Math.random() * 0xFFFFFF << 0).toString(16));
         }
         function reset() {
             targets = [];
-            g=Math.floor(Math.random()*NUM_POINTS)
+            g = Math.floor(Math.random() * NUM_POINTS)
             for (let i = 0; i < NUM_POINTS; i++) {
                 targets.push((i + g) % NUM_POINTS);
             }
@@ -47,7 +60,7 @@
             }
         }
         reset()
-        
+
         let vert = targets.map(x => x % 2);
 
         function updatePoints() {
@@ -72,7 +85,7 @@
             ctx.fillStyle = 'rgba(0,0,0,0.05)';
             ctx.fillRect(0, 0, WIDTH, HEIGHT);
             for (let i = 0; i < NUM_POINTS; i++) {
-                ctx.fillStyle=colors[i]
+                ctx.fillStyle = colors[i]
                 ctx.fillRect(pts[i * 2] + WIDTH / 2, pts[i * 2 + 1] + HEIGHT / 2, 1, 1);
             }
             requestAnimationFrame(updateScreen);
@@ -85,4 +98,5 @@
         requestAnimationFrame(updateScreen);
     </script>
 </body>
+
 </html>

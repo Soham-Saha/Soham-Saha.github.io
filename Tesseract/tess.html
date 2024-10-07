@@ -2,6 +2,17 @@
 <html>
 
 <head>
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-64ZC9D41C9"></script>
+        <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+                gtag('js', new Date());
+
+                gtag('config', 'G-64ZC9D41C9');
+        </script>
+
         <title>Tesseract</title>
         <link rel="stylesheet" href="../styles.css">
 </head>
@@ -83,7 +94,7 @@
                                 sum += Math.abs(data[i].z - data[j].z)
                                 sum += Math.abs(data[i].w - data[j].w)
                                 if (sum == 2) {
-                                        
+
                                         if (Math.abs(data[i].w - data[j].w) == 2) {
                                                 connections.push([i, j, `#FEDA14`])
                                         } else if (data[i].w == 1) {
@@ -97,7 +108,7 @@
 
                 //Projection function
                 function plane(p) {
-                        return [p.x * 2000 / ((3.5 - p.w) * (10 - p.z))+WIDTH/2, p.y * 2000 / ((3.5 - p.w) * (10 - p.z))+HEIGHT/2]
+                        return [p.x * 2000 / ((3.5 - p.w) * (10 - p.z)) + WIDTH / 2, p.y * 2000 / ((3.5 - p.w) * (10 - p.z)) + HEIGHT / 2]
                 }
 
                 //Animation
