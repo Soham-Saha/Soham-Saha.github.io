@@ -11,11 +11,11 @@
 <body>
         <canvas id='canv'></canvas>
         <script>
-                PT_COUNT = 1000
+                PT_COUNT = 1500
                 const WIDTH = window.innerWidth;
                 const HEIGHT = window.innerHeight;
 
-                document.body.style.background = 'rgb(252, 252, 229)';
+                document.body.style.background = 'black';
                 const canv = document.getElementById('canv');
                 const ctx = canv.getContext('2d');
                 canv.width = WIDTH;
@@ -26,11 +26,12 @@
                         s[i] = Math.random() * canv.width;
                         s[i + 1] = Math.random() * canv.height;
                 }
+                v=new Float32Array(PT_COUNT);
                 function viewUpdater() {
-                        ctx.fillStyle = 'rgba(252, 252, 229,0.05)'
+                        ctx.fillStyle = 'rgba(0,0,0,0.02)'
                         ctx.fillRect(0, 0, canv.width, canv.height)
-                        ctx.fillStyle = 'rgb(92, 1, 1)'
                         for (i = 0; i < PT_COUNT * 2; i += 2) {
+                                ctx.fillStyle = 'HSL('+(v[i/2]*1.4+160)+',100%,50%)'
                                 ctx.beginPath()
                                 ctx.beginPath();
                                 ctx.arc(s[i], s[i + 1], 1, 0, 2 * Math.PI);
@@ -38,17 +39,25 @@
                         }
 
                 }
-                var t=0
+                var t = 0
+                function velx(x, y, t){
+                        return Math.log(Math.abs(y/60)+0.2)*2;
+                }
+                function vely(x, y, t){
+                        return Math.log(Math.abs(x/60)+0.2)*2;
+                }
+
                 function pointUpdater() {
-                  t++
+                        t++
                         for (i = 0; i < s.length; i += 2) {
-                                vx = -(s[i+1]-canv.height/2)*Math.cos(t/200)/50;
-                                vy = (s[i]-canv.width/2)*Math.cos(t/200)/50;
+                                vx=velx(s[i]-WIDTH/2,s[i+1]-HEIGHT/2,t);
+                                vy=vely(s[i]-WIDTH/2,s[i+1]-HEIGHT/2,t);
+                                v[i/2]=vx*vx+vy*vy;
                                 s[i] = s[i] + vx * 0.5;
                                 s[i + 1] = s[i + 1] + vy * 0.5;
                                 if (Math.random() < 0.01) {
-                                        s[i] = (Math.random()*1.2-0.1) * canv.width;
-                                        s[i + 1] = (Math.random()*1.2-0.1) * canv.height;
+                                        s[i] = (Math.random() * 1.2 - 0.1) * canv.width;
+                                        s[i + 1] = (Math.random() * 1.2 - 0.1) * canv.height;
                                 }
                         }
                 }
@@ -57,7 +66,7 @@
                         viewUpdater();
                         requestAnimationFrame(update);
                 }
-                
+
                 update();
 
         </script>
