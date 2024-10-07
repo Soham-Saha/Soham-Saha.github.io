@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Some javascript experiments made by Soham Saha">
-    <meta name="keywords" content="Soham Saha, portfolio, web development, programming, projects, javascript, procedural art">
+    <meta name="description" content="Some javascript experiments made by Soham Saha">
+    <meta name="keywords"
+        content="Soham Saha, portfolio, web development, programming, projects, javascript, procedural art">
     <meta name="author" content="Soham Saha">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
     <title>Projects</title>
     <style>
         :root {
@@ -20,7 +21,7 @@
         }
 
         body {
-            font-family: 'Consolas', monospace;
+            font-family: 'Fira Code', 'Consolas', monospace;
             line-height: 1.6;
             max-width: 800px;
             margin: 0 auto;
@@ -28,12 +29,13 @@
             background: var(--c3);
         }
 
-        h1 {
+        .title {
             color: var(--c5);
             border-bottom: 2px solid var(--c5);
             padding-bottom: 5px;
             margin-bottom: 20px;
             font-size: xx-large;
+            font-style: bold;
         }
 
         #linkSet {
@@ -45,7 +47,7 @@
         }
 
         .link {
-            border: 2px solid var(--c2);
+            border: 2px solid hsl(0, 0%, 25%);
             border-radius: 5px;
             background-color: var(--c2);
             padding: 20px;
@@ -57,13 +59,13 @@
         }
 
         .link:hover {
-            transform: translateY(-3px);
+            transform: scale(1.01);
         }
 
         a {
             display: block;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: normal;
         }
 
         .name {
@@ -82,7 +84,7 @@
 </head>
 
 <body>
-    <h1>Projects</h1>
+    <p class="title">Projects</p>
     <div id="linkSet"></div>
 </body>
 
@@ -100,9 +102,9 @@
     }
 
     links = new Array(0);
-    links.push(new Link("Tesseract", "Tesseract/tess.html",));
-    links.push(new Link("Pulse", "Pulse/Pulse.html",));
-    links.push(new Link("Tangled", "Tangled/Tangled.html",));
+    links.push(new Link("Tesseract", "Tesseract/tess.html", "Starting to experiment with JS"));
+    links.push(new Link("Tangled", "Tangled/Tangled.html", "Building particle systems"));
+    links.push(new Link("Pulse", "Pulse/Pulse.html", "A happy glitch, made while designing \"Tangled\""));
     links.push(new Link("Symmetric", "Symmetric/Symmetric.html",));
     links.push(new Link("ASCII Camera", "ASCIIArt/ASCII.html",));
     links.push(new Link("Vector Field", "VFSim/VFSim.html",));
@@ -110,8 +112,8 @@
     links.push(new Link("Trails", "Trails/Trails.html",));
 
     links.forEach(link => {
-        document.getElementById("linkSet").innerHTML += "<a href=\"" + link.target + "\"><div class=\"link\"><p class=\"name\">"
-            + link.name + "</p>" + (link.desc != null ? "<p class=\"desc\">" + link.desc + "</p>" : "") + "</div></a>";
+        document.getElementById("linkSet").innerHTML += "<a href=\"" + link.target + "\"><div class=\"link\"><p class=\"name\"><strong>"
+            + link.name + "</strong></p>" + (link.desc != null ? "<p class=\"desc\">" + link.desc + "</p>" : "") + "</div></a>";
     });
 
 </script>
