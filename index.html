@@ -36,7 +36,7 @@
             padding-bottom: 5px;
             margin-bottom: 20px;
             font-size: xx-large;
-            font-style: bold;
+            font-weight: bold;
         }
 
         #linkSet {
@@ -66,7 +66,6 @@
         a {
             display: block;
             text-decoration: none;
-            font-weight: normal;
         }
 
         .name {
@@ -74,6 +73,7 @@
             margin-top: 0px;
             margin-bottom: 0px;
             color: var(--c4);
+            font-weight: bold;
         }
 
         .desc {
@@ -113,8 +113,8 @@
     links.push(new Link("Trails", "Trails/Trails.html",));
 
     links.forEach(link => {
-        document.getElementById("linkSet").innerHTML += "<a href=\"" + link.target + "\"><div class=\"link\"><p class=\"name\"><strong>"
-            + link.name + "</strong></p>" + (link.desc != null ? "<p class=\"desc\">" + link.desc + "</p>" : "") + "</div></a>";
+        document.getElementById("linkSet").innerHTML += "<a href=\"" + link.target + "\"><div class=\"link\"><p class=\"name\">"
+            + link.name + "</p>" + (link.desc != null ? "<p class=\"desc\">" + link.desc + "</p>" : "") + "</div></a>";
     });
 
 </script>
