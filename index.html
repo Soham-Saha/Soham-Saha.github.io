@@ -25,10 +25,10 @@
     <style>
         :root {
             --c1: #000000;
-            --c2: hsl(0, 0%, 9%);
-            --c3: hsl(0, 0%, 20%);
-            --c4: hsl(0, 0%, 70%);
-            --c5: hsl(0, 0%, 80%);
+            --c2: hsl(0, 0%, 13%);
+            --c3: hsl(0, 0%, 18%);
+            --c4: hsl(0, 0%, 60%);
+            --c5: hsl(0, 0%, 75%);
 
         }
 
@@ -38,11 +38,11 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background: var(--c3);
+            background: var(--c2);
         }
 
         .title {
-            color: var(--c5);
+            color: hsl(0, 0%, 80%);
             border-bottom: 2px solid var(--c5);
             padding-bottom: 5px;
             margin-bottom: 20px;
@@ -59,9 +59,9 @@
         }
 
         .link {
-            border: 2px solid hsl(0, 0%, 25%);
-            border-radius: 5px;
-            background-color: var(--c2);
+            border: 2px solid hsl(0, 0%, 40%);
+            border-radius: 10px;
+            background-color: var(--c3);
             padding: 20px;
             padding-top: 15px;
             padding-bottom: 15px;
@@ -71,7 +71,7 @@
         }
 
         .link:hover {
-            transform: scale(1.01);
+            transform: translateY(-3px);
         }
 
         a {
@@ -83,7 +83,7 @@
             font-size: x-large;
             margin-top: 0px;
             margin-bottom: 0px;
-            color: var(--c4);
+            color: var(--c5);
             font-weight: bold;
         }
 
@@ -91,6 +91,7 @@
             margin-top: 10px;
             margin-bottom: 0px;
             color: var(--c4);
+            line-height: 25px;
         }
     </style>
 </head>
@@ -106,26 +107,37 @@
         name = "";
         target = "";
         desc = "";
-        constructor(name, target, desc) {
+        date = "";
+        constructor(name, target, desc, date) {
             this.name = name;
             this.target = target;
             this.desc = desc;
+            this.date = date;
         }
     }
 
     links = new Array(0);
-    links.push(new Link("Tesseract", "Tesseract/tess.html", "Starting to experiment with JS"));
-    links.push(new Link("Tangled", "Tangled/Tangled.html", "Building particle systems"));
-    links.push(new Link("Pulse", "Pulse/Pulse.html", "A happy glitch, made while designing \"Tangled\""));
-    links.push(new Link("Symmetric", "Symmetric/Symmetric.html",));
-    links.push(new Link("ASCII Camera", "ASCIIArt/ASCII.html",));
-    links.push(new Link("Vector Field", "VFSim/VFSim.html",));
-    links.push(new Link("Glitch", "Glitch/Glitch.html",));
-    links.push(new Link("Trails", "Trails/Trails.html",));
+    links.push(new Link("Vector Field", "VFSim/VFSim.html", null, "26th June, 2024"));
+    links.push(new Link("Tesseract", "Tesseract/tess.html", "Starting to experiment with JS", "3rd July, 2024"));
+    links.push(new Link("Tangled", "Tangled/Tangled.html", "Building particle systems", "12th July, 2024"));
+    links.push(new Link("Pulse", "Pulse/Pulse.html", "A happy glitch, made while designing \"Tangled\"", "12th July, 2024"));
+    links.push(new Link("Symmetric", "Symmetric/Symmetric.html", null, "14th July, 2024"));
+    links.push(new Link("ASCII Camera", "ASCIIArt/ASCII.html", null, "18th July, 2024"));
+    links.push(new Link("Glitch", "Glitch/Glitch.html", null, "28th September, 2024"));
+    links.push(new Link("Trails", "Trails/Trails.html", null, "28th September, 2024"));
 
     links.forEach(link => {
-        document.getElementById("linkSet").innerHTML += "<a href=\"" + link.target + "\"><div class=\"link\"><p class=\"name\">"
-            + link.name + "</p>" + (link.desc != null ? "<p class=\"desc\">" + link.desc + "</p>" : "") + "</div></a>";
+        document.getElementById("linkSet").innerHTML +=
+            `<div class="link">
+                    <a href="${link.target}">
+                        <p class="name">${link.name}</p>
+                    </a>
+                    <p class="desc">
+                        ${link.date}
+                        <br>
+                        ${(link.desc != null ? link.desc : ``)}
+                    </p>
+            </div>`;
     });
 
 </script>
