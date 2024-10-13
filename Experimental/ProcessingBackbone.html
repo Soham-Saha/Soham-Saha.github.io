@@ -22,18 +22,11 @@
 <body>
         <script>
                 function setup() {
-                        createCanvas(500, 500)
-                        noiseSeed(15342)
+                        
                 }
 
                 function draw() {
-                        background("white")
-                        for (let x = 0; x < 500; x += 0.5) {
-                                let amp = noise(x * 0.05)
-                                stroke(`rgba(150, 117, 92, ${(1 / amp) * 0.05 + 0.15})`)
-                                let shift = -3 * noise(x * 0.1 + 10)
-                                line(x, 247 + -noise(x * 0.1 + 40)*30, x, 250 + noise(x * 0.1 + 10)* 30)
-                        }
+
                 }
         </script>
 </body>
