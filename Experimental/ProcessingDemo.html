@@ -1,0 +1,42 @@
+<html>
+
+<head>
+        <script src="https://cdn.jsdelivr.net/npm/p5@1.11.0/lib/p5.min.js"></script>
+        <style>
+                body {
+                        margin: 0;
+                        padding: 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background:hsl(0, 0%, 13%);;
+                        overflow: hidden;
+                }
+                .p5canvas{
+                        
+                        border-radius: 10px;
+                        border: 2px solid hsl(0, 0%, 50%);
+                }
+        </style>
+</head>
+
+<body>
+        <script>
+                function setup() {
+                        createCanvas(500, 500)
+                        noiseSeed(15342)
+                }
+
+                function draw() {
+                        background("white")
+                        for (let x = 0; x < 500; x += 0.5) {
+                                let amp = noise(x * 0.05)
+                                stroke(`rgba(150, 117, 92, ${(1 / amp) * 0.05 + 0.15})`)
+                                let shift = -3 * noise(x * 0.1 + 10)
+                                line(x, 250 + shift, x, 250 + shift + amp * 70)
+                        }
+                }
+        </script>
+</body>
+
+</html>
