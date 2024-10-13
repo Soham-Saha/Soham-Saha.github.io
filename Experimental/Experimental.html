@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<!--style>
+        :root {
+                --a: #E3D6CD;
+                --b: #D9C9BA;
+                --c: #DEC9B4;
+                --d: #F6F2EF;
+                --e: #D1B496;
+                --f: #615040;
+                --g: #D8BEA7;
+                --h: #CAC9C7;
+                --i: #CFCECC;
+                --j: #C5A689;
+                --k: #AD8C6B;
+                --l: #977F63;
+                #6A5D4D;
+                #B39475;
+                #7D684D;
+                #A9977F;
+                #B8A690;
+                #C4B7A7;
+                #7A7369;
+                #9D948B;
+                #AD9E8B;
+
+                #cea588 #534438 #fbe1bb #785237 #926139
+        }
+</style-->
+
+<head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-64ZC9D41C9"></script>
+        <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+                gtag('js', new Date());
+
+                gtag('config', 'G-64ZC9D41C9');
+        </script>
+
+        <title>Experimental</title>
+        <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+        <canvas id='canv'></canvas>
+        <script>
+                const PT_COUNT = 150
+                const WIDTH = window.innerWidth;
+                const HEIGHT = window.innerHeight;
+                //const rad = 0.45 * Math.min(WIDTH, HEIGHT);
+
+                document.body.style.background = 'black';
+                const canv = document.getElementById('canv');
+                const ctx = canv.getContext('2d');
+                canv.width = WIDTH;
+                canv.height = HEIGHT;
+
+                img = new Image();
+                img.onload = function () {
+                        const w = img.width;
+                        const h = img.height;
+                        const offscreencanv = new OffscreenCanvas(w, h);
+                        const offscreenctx = offscreencanv.getContext('2d');
+                        offscreenctx.drawImage(img, 0, 0, w, h);
+                        const imgdata = offscreenctx.getImageData(0, 0, w, h);
+                        const data = imgdata.data;
+
+                        function xytoIndex(x, y) {
+                                return 4 * (Math.floor(y) * w + Math.floor(x));
+                        }
+
+                        xloc = new Float32Array(PT_COUNT);
+                        yloc = new Float32Array(PT_COUNT);
+                        active = [];
+                        for (i = 0; i < PT_COUNT; i++) {
+                                xloc[i] = Math.floor(Math.random() * w);
+                                yloc[i] = Math.floor(Math.random() * h);
+                        }
+
+                        function update() {
+                                //data update
+                                for (i = 0; i < PT_COUNT; i++) {
+                                        const x = xloc[i]
+                                        const y = yloc[i]
+                                        xNew = x + 1;
+                                        yNew = y;
+                                        if (data[xytoIndex(xNew, yNew)] >= data[xytoIndex(x, y)] - 5
+                                                && data[xytoIndex(xNew, yNew)] <= data[xytoIndex(x, y)] + 5
+                                                && xNew < w && xNew >= 0 && yNew < h && yNew > 0) {
+                                                xloc[i] = xNew
+                                                yloc[i] = yNew
+                                                active[i] = true
+                                        } else {
+                                                active[i] = false
+                                                xloc[i] = Math.floor(Math.random() * w);
+                                                yloc[i] = Math.floor(Math.random() * h);
+                                        }
+                                }
+
+                                //display
+                                ctx.fillStyle = 'rgba(0,0,0,0)'
+                                ctx.fillRect(0, 0, WIDTH, HEIGHT);
+                                ctx.fillStyle = 'white'
+                                scale = 0.60
+                                for (i = 0; i < PT_COUNT && active[i]; i++) {
+                                        ctx.fillRect(WIDTH / 2 + (xloc[i] - w / 2) * scale, HEIGHT / 2 + (yloc[i] - h / 2) * scale, 1, 1);
+                                }
+
+                                requestAnimationFrame(update);
+                        }
+                        requestAnimationFrame(update)
+                }
+                img.src = "Self.png";
+
+        </script>
+</body>
+
+</html>
