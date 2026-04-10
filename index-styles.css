@@ -12,7 +12,10 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    padding-top: 10px;
     background: var(--c2);
+    color: var(--c5);
+    line-height: 1.2;
 }
 
 .title {
@@ -24,11 +27,11 @@ body {
     font-weight: bold;
 }
 
-#linkSet {
+.linkSet {
     max-width: 800px;
     margin: 0 auto;
     display: grid;
-    /*grid-template-columns: repeat(2, 1fr); Enable if you want multiple columns*/
+    /* grid-template-columns: repeat(2, 1fr); */
     gap: 15px;
 }
 
@@ -40,7 +43,7 @@ body {
     padding-top: 15px;
     padding-bottom: 15px;
     overflow: hidden;
-    box-shadow: 0 2px 5px var(--c1);
+    box-shadow: -8px 8px 0px var(--c1);
     transition: transform 0.3s ease;
 }
 

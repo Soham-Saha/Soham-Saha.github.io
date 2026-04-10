@@ -25,8 +25,18 @@
 </head>
 
 <body>
-    <p class="title">Math explainers</p>
-    <div id="linkSet"></div>
+    <p class="title">Category theory</p>
+    <div id="catLinks" class="linkSet"></div>
+
+    <br>
+
+    <p class="title">Algebra</p>
+    <div id="algLinks" class="linkSet"></div>
+
+    <br>
+
+    <p class="title">Miscellaneous</p>
+    <div id="miscLinks" class="linkSet"></div>
 </body>
 
 <script type="text/javascript">
@@ -37,15 +47,19 @@
     links.push(new Link("Sections and retractions", "Sections_and_retractions/main.pdf", ""));
     links.push(new Link("Universal morphisms", "Universal_morphisms/main.pdf", ""));
     links.push(new Link("Adjoints", "Adjoints/main.pdf", ""));
-    links.push(new Link("Implicit function theorem", "Implicit_function_thm/main.pdf", ""));
+    add_to(links, document.getElementById("catLinks"));
+    
+    links = new Array(0);
     links.push(new Link("Normal subgroups", "Normal_subgroups/main.pdf", ""));
     links.push(new Link("Group actions", "Group_actions/main.pdf", ""));
     links.push(new Link("Semidirect product", "Semidirect_product/main.pdf", ""));
-    links.push(new Link("Polya enumeration theorem", "Polya_enumeration_thm/main.pdf", ""));
     links.push(new Link("Chinese remainder theorem", "Chinese_remainder_thm/main.pdf", ""));
+    add_to(links, document.getElementById("algLinks"));
 
-    add_to(links, document.getElementById("linkSet"));
-
+    links = new Array(0);
+    links.push(new Link("Implicit function theorem", "Implicit_function_thm/main.pdf", ""));
+    links.push(new Link("Polya enumeration theorem", "Polya_enumeration_thm/main.pdf", ""));
+    add_to(links, document.getElementById("miscLinks"));
 </script>
 
 </html>

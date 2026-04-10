@@ -25,8 +25,15 @@
 </head>
 
 <body>
+    <p class="title">An awkward introduction</p>
+    <div id="intro">
+        Hmm... What can I say?
+    </div>
+
+    <br>
+
     <p class="title">Links</p>
-    <div id="linkSet"></div>
+    <div id="links" class="linkSet"></div>
 </body>
 
 <script type="text/javascript">
@@ -36,7 +43,7 @@
     links.push(new Link("Generative art experiments", "Gen_Art/index.html", "Procedural creativity at work."));
     links.push(new Link("FreeCAD experiments", "FreeCAD/index.html", "Chipping away at 3D models."));
 
-    add_to(links, document.getElementById("linkSet"))
+    add_to(links, document.getElementById("links"))
 
 </script>
 

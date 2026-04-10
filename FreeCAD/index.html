@@ -26,13 +26,13 @@
 
 <body>
     <p class="title">FreeCAD experiments</p>
-    <div id="linkSet"></div>
+    <div id="links" class="linkSet"></div>
 </body>
 
 <script type="text/javascript">
     links = new Array(0);
     links.push(new Link("Hello, FreeCAD", "Tutorial-HelloWorld.html", "Learnt from a tutorial."));
-    links.push(new Link("Augmented sphere", "Unnamed-Body.html", "Doesn't roll well though."));
+    links.push(new Link("Augmented sphere", "Unnamed-Body.html", "Doesn't roll well, though."));
     links.push(new Link("Bracket", "bracket-Body.html", "For putting up on walls."));
     links.push(new Link("Lofting #1", "loft_demo-Body.html", "Learning to loft."));
     links.push(new Link("Lofting #2", "speaker-BodyFillet.html", "Lofting some more..."));
@@ -42,7 +42,7 @@
     links.push(new Link("Something", "Challenge1-Body.html", "A more complicated tutorial, perhaps?"));
     links.push(new Link("Intersection", "Sigma.html", "To keep on my desk."));
 
-    add_to(links, document.getElementById("linkSet"));
+    add_to(links, document.getElementById("links"));
 
 </script>
 
