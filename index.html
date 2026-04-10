@@ -4,141 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Some javascript experiments made by Soham Saha">
-    <meta name="keywords"
-        content="Soham Saha, portfolio, web development, programming, projects, javascript, procedural art">
     <meta name="author" content="Soham Saha">
-
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
-
+    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-64ZC9D41C9"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
+        
         gtag('config', 'G-64ZC9D41C9');
     </script>
+    
+    <script src="links-manager.js"></script>
 
-    <title>Projects</title>
-    <style>
-        :root {
-            --c1: #000000;
-            --c2: hsl(0, 0%, 13%);
-            --c3: hsl(0, 0%, 18%);
-            --c4: hsl(0, 0%, 60%);
-            --c5: hsl(0, 0%, 75%);
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index-styles.css">
 
-        }
-
-        body {
-            font-family: 'Fira Code', 'Consolas', monospace;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: var(--c2);
-        }
-
-        .title {
-            color: hsl(0, 0%, 80%);
-            border-bottom: 2px solid var(--c5);
-            padding-bottom: 5px;
-            margin-bottom: 20px;
-            font-size: xx-large;
-            font-weight: bold;
-        }
-
-        #linkSet {
-            max-width: 800px;
-            margin: 0 auto;
-            display: grid;
-            /*grid-template-columns: repeat(2, 1fr); Enable if you want multiple columns*/
-            gap: 15px;
-        }
-
-        .link {
-            border: 2px solid hsl(0, 0%, 40%);
-            border-radius: 10px;
-            background-color: var(--c3);
-            padding: 20px;
-            padding-top: 15px;
-            padding-bottom: 15px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px var(--c1);
-            transition: transform 0.3s ease;
-        }
-
-        .link:hover {
-            transform: translateY(-3px);
-        }
-
-        a {
-            display: block;
-            text-decoration: none;
-        }
-
-        .name {
-            font-size: x-large;
-            margin-top: 0px;
-            margin-bottom: 0px;
-            color: var(--c5);
-            font-weight: bold;
-        }
-
-        .desc {
-            margin-top: 10px;
-            margin-bottom: 0px;
-            color: var(--c4);
-            line-height: 25px;
-        }
-    </style>
+    <title>Elucidate</title>
 </head>
 
 <body>
-    <p class="title">Projects</p>
+    <p class="title">Links</p>
     <div id="linkSet"></div>
 </body>
 
 <script type="text/javascript">
 
-    class Link {
-        name = "";
-        target = "";
-        desc = "";
-        date = "";
-        constructor(name, target, desc, date) {
-            this.name = name;
-            this.target = target;
-            this.desc = desc;
-            this.date = date;
-        }
-    }
-
     links = new Array(0);
-    links.push(new Link("Vector Field", "VFSim/VFSim.html", "Porting over from my Java experience", "26th June, 2024"));
-    links.push(new Link("Tesseract", "Tesseract/tess.html", "Starting to experiment with JS", "3rd July, 2024"));
-    links.push(new Link("Tangled", "Tangled/Tangled.html", "Building particle systems", "12th July, 2024"));
-    links.push(new Link("Pulse", "Pulse/Pulse.html", "A happy glitch, made while designing \"Tangled\"", "12th July, 2024"));
-    links.push(new Link("Symmetric", "Symmetric/Symmetric.html", "Playing with coloured dots", "14th July, 2024"));
-    links.push(new Link("ASCII Camera", "ASCIIArt/ASCII.html", "Looking at the world through letters", "18th July, 2024"));
-    links.push(new Link("Glitch", "Glitch/Glitch.html", "I have literally no idea what this one does", "28th September, 2024"));
-    links.push(new Link("Trails", "Trails/Trails.html", "Racing towards the center", "28th September, 2024"));
+    links.push(new Link("Math explainers", "Notes/index.html", "An attempt to elucidate."));
+    links.push(new Link("Generative art experiments", "Gen_Art/index.html", "Procedural creativity at work."));
+    links.push(new Link("FreeCAD experiments", "FreeCAD/index.html", "Chipping away at 3D models."));
 
-    links.forEach(link => {
-        document.getElementById("linkSet").innerHTML +=
-            `<div class="link">
-                    <a href="${link.target}">
-                        <p class="name">${link.name}</p>
-                    </a>
-                    <p class="desc">
-                        ${link.date}
-                        <br>
-                        ${(link.desc != null ? link.desc : ``)}
-                    </p>
-            </div>`;
-    });
+    add_to(links, document.getElementById("linkSet"))
 
 </script>
 

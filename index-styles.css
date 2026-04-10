@@ -1,0 +1,69 @@
+:root {
+    --c1: #000000;
+    --c2: hsl(0, 0%, 13%);
+    --c3: hsl(0, 0%, 18%);
+    --c4: hsl(0, 0%, 60%);
+    --c5: hsl(0, 0%, 75%);
+}
+
+body {
+    font-family: 'Fira Code', 'Consolas', monospace;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: var(--c2);
+}
+
+.title {
+    color: hsl(0, 0%, 80%);
+    border-bottom: 2px solid var(--c5);
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+#linkSet {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    /*grid-template-columns: repeat(2, 1fr); Enable if you want multiple columns*/
+    gap: 15px;
+}
+
+.link {
+    border: 2px solid hsl(0, 0%, 40%);
+    border-radius: 10px;
+    background-color: var(--c3);
+    padding: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px var(--c1);
+    transition: transform 0.3s ease;
+}
+
+.link:hover {
+    transform: translateY(-3px);
+}
+
+a {
+    display: block;
+    text-decoration: none;
+}
+
+.name {
+    font-size: x-large;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: var(--c5);
+    font-weight: bold;
+}
+
+.desc {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    color: var(--c4);
+    line-height: 25px;
+}

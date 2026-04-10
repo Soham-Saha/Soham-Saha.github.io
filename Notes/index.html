@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Soham Saha">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-64ZC9D41C9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        
+        gtag('config', 'G-64ZC9D41C9');
+    </script>
+    
+    <script src="../links-manager.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../index-styles.css">
+
+    <title>Explainers</title>
+</head>
+
+<body>
+    <p class="title">Math explainers</p>
+    <div id="linkSet"></div>
+</body>
+
+<script type="text/javascript">
+    links = new Array(0);
+    links.push(new Link("Yoneda lemma", "Yoneda_lemma/main.pdf", ""));
+    links.push(new Link("Free constructions", "Free_constructions/main.pdf", ""));
+    links.push(new Link("Comma categories", "Comma_categories/main.pdf", ""));
+    links.push(new Link("Sections and retractions", "Sections_and_retractions/main.pdf", ""));
+    links.push(new Link("Universal morphisms", "Universal_morphisms/main.pdf", ""));
+    links.push(new Link("Adjoints", "Adjoints/main.pdf", ""));
+    links.push(new Link("Implicit function theorem", "Implicit_function_thm/main.pdf", ""));
+    links.push(new Link("Normal subgroups", "Normal_subgroups/main.pdf", ""));
+    links.push(new Link("Group actions", "Group_actions/main.pdf", ""));
+    links.push(new Link("Semidirect product", "Semidirect_product/main.pdf", ""));
+    links.push(new Link("Polya enumeration theorem", "Polya_enumeration_thm/main.pdf", ""));
+    links.push(new Link("Chinese remainder theorem", "Chinese_remainder_thm/main.pdf", ""));
+
+    add_to(links, document.getElementById("linkSet"));
+
+</script>
+
+</html>
