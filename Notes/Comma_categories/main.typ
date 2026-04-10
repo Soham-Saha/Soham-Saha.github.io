@@ -7,7 +7,7 @@
   author  : "Soham Saha"
 )
 
-_Have a look at the above page *"Free" constructions* for a nice discussion._
+_Have a look at the above page *Free constructions* for a nice discussion._
 
 A comma category might be thought of as a way of talking about functions between objects which belong to $2$ different categories, by bringing them on the same playing field, a common category. We will be trying to match the notation on this Wikipedia page: https://en.wikipedia.org/wiki/Comma_category
 
