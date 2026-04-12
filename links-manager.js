@@ -15,8 +15,8 @@ function add_to(links, target){
     links.forEach(link => {
         target.innerHTML +=
             `<div class="link">
-                    <a href="${link.target}">
-                        <p class="name">${link.name}</p>
+                    <a class="linkName" href="${link.target}">
+                        ${link.name}
                     </a>
                     ${
                         link.date || link.desc ?

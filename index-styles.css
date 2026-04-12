@@ -51,12 +51,12 @@ body {
     transform: translateY(-3px);
 }
 
-a {
-    display: block;
+a{
     text-decoration: none;
+    color: greenyellow;
 }
 
-.name {
+.linkName {
     font-size: x-large;
     margin-top: 0px;
     margin-bottom: 0px;
