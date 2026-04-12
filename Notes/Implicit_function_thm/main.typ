@@ -24,7 +24,7 @@ Let us start with a simple example first.
   For all other points apart from these two points, we can get such an open set $U$ as specified in the question.
 ]
 
-#div
+#divdash
 
 Let us analyze what is happening in the example above a bit  further, setting up the scene for generalization.
 
@@ -50,7 +50,7 @@ Let us analyze what is happening in the example above a bit  further, setting up
   Note that the "goodness" function $f$ is just a book-keeping function for what constraints we are trying to solve for. It being $C^1$ tells us that the constraints we are dealing with are nice and smooth, and its rate of change locally around a point (i.e., the determinant of its derivative) describes the rate of change of "goodness" around that point.
 ]
 
-#div
+#divdash
 
 Now, let us try to generalize these thoughts.
 
@@ -68,7 +68,7 @@ Now, let us try to generalize these thoughts.
   Therefore, $det(D f_y (a,b))!=0$ is a sufficient condition for the existence of open set $U$ as described above, but it is not a necessary condition in general.
 ]
 
-#div
+#divdash
 
 Now, to put the final nail in the coffin, let us have a look at what Wikipedia gives us as intuition for the implicit function theorem:
 
@@ -87,14 +87,55 @@ Unpacking the Wikipedian sentiment,
 A cleaner formulation, with a few added details would be:
 
 #rect(width:100%)[
-  Given a $C^1$ function $f: RR^(n+m)->RR^m$, $f(a,b)=0$ and the partial Jacobian $D_y f(a,b)$ invertible, there exist open sets $U in.rev a,V in.rev b$ and a $C^1$ function $g :U->V$ such that $ {(x,y) in U times V : f(x,y)=0}={(x,g(x)):x in U} $
+  === Implicit function theorem
+  
+  Given an open set $A subset.eq RR^(n+m)$, a $C^1$ function $f: A->RR^m$, points $a in RR^n, b in RR^m$ such that $f(a,b)=0$, and the partial Jacobian $D_y f(a,b)$ invertible, there exist open sets $U in.rev a,V in.rev b$ (with $U times V subset.eq A$) and a $C^1$ function $g :U->V$ such that $ {(x,y) in U times V : f(x,y)=0}={(x,g(x)):x in U} $
 
-  Moreover, $g$ would be a $C^1$ function, and we would have $ forall x in U, g'(x)=-(D_y f (x,g(x)))^(-1)D_x f(x,g(x)) $  
+  Moreover, $g$ satisfies $ forall x in U, D g(x)=-(D_y f (x,g(x)))^(-1) compose D_x f(x,g(x)) $
+
+  #notebox[
+    Therefore, given $m$ constraints on the $n+m$ variables $x_1,...,x_n,y_1,...,y_m$, $g$ locally solves for $y$ in terms of $x$ around $x=a,y=b$.
+  ]
 ]
+
+This is the formalization which we shall be using in the next sections.
 
 #notebox[
-  The above claim can be proved by applying the inverse function theorem on the function $ F:RR^(n+m)->RR^(m+n):=(x,y)|->(x,f(x,y)) $ at the point $(a,b)$. But that is a story for another day...
+  The key thing to remember about the implicit function theorem is that it allows us to locally solve for $y$ in terms of $x$ given $f(x,y)=0$.
 ]
+
+#divdash
+
+Though the implicit function theorem is much more general that the inverse function theorem, we can give a nice  proof of the implicit function theorem using the inverse function theorem.
+
+First, let us state the inverse function theorem :
+
+#rect(width:100%)[
+  === Inverse function theorem
+
+  Given an open set $A subset.eq RR^k$, a $C^1$ function $f:A->RR^k$ and a point $p in A$ such that $D f(p)$ is non-singular, there exists an open set $U subset.eq A$ which contains $p$, such that:
+  - $forall x in U,D f (x)$ is non-singular.
+  - $f(U)$ is open in $RR^k$.
+  - $f$ is a $C^1$-diffeomorphism from $U$ to $f(U)$. That is, $f|_U$ is a bijection from $U$ to $f(U)$ with a continuously differentiable inverse.
+
+  Moreover, $g:=(f|_U)^(-1)$ satisfies $ forall y in f(U),D g(y)=(D f(g(y)))^(-1), $
+
+  or equivalently, $ forall x in U, D g(f(x))=(D f (x))^(-1) $
+]
+
+Now we shall prove the implicit function theorem, referring to the symbols in the statement of the implicit function theorem above.
+
+Observe that $ f(x,y)=0<=>F(x,y)=(x,0)<=>(x,y) in F^(-1)(x,0), $ where $F:=(x,y)|->(x,f(x,y))$.
+
+Therefore, if we can locally invert $F$ around $(a,b)$, then we can extract $g$ as $ g:=x|->G_y (x,0)=pi compose G compose i $ where $pi:=(x,y)|->y$, $G$ is the local inverse of $F$, and $i:=x|->(x,0)$.
+
+The inverse function theorem gives us local invertibility of $F$, and we get the derivative of $g$ by $ D g(x)&=D(pi compose G compose i)(x)\ &=D pi ((G compose i) x) compose D G (i(x)) compose D i(x)\ &= pi compose D G(x,0) compose i\ &=pi compose (D F (x,g(x)))^(-1) compose i\ &=pi compose mat(I_n,0; D_x f (x,g(x)), D_y f (x,g(x)))^(-1) compose i\ &=-(D_y f(x,g(x)))^(-1) compose D_x f(x,g(x))  $
+
+#divdash
+
+Once we have the implicit function theorem, we can recover the inverse function theorem easily.
+
+We want to locally invert $f:A->RR^k$ around $p in A$. So, we want to locally solve for $y$ in terms of $x$ in $f(y)=x<=>f(y)-x=0$. Applying the implicit function theorem to $(x,y)|->f(y)-x$ at the point $(f(p),p)$ gives us what we want.
 
 #divdash
 

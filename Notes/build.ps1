@@ -1,3 +1,5 @@
-Get-ChildItem -Directory | ForEach-Object {
-    typst compile --root . .\$_\main.typ
-}
+param(
+    [Parameter(Mandatory=$true)][string]$proj
+)
+
+typst compile --root . $proj\main.typ
