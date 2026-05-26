@@ -81,8 +81,8 @@
     #text(size:17pt, title)
     #v(0.9em, weak: true)
     #text(size:14pt, author)
-    #v(0.9em, weak: true)
     #if show_link [
+      #v(0.9em, weak: true)
       #link("https://soham-saha.github.io")
     ]
 
@@ -91,3 +91,11 @@
 
   body
 }
+
+// In main:
+// #import "template.typ" : *
+
+// #show : start.with(
+//   title   : [],
+//   author  : "Soham Saha",
+// )
