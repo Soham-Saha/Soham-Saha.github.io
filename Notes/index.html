@@ -16,49 +16,59 @@
         gtag('config', 'G-64ZC9D41C9');
     </script>
     
-    <script src="../links-manager.js"></script>
+    <script src="notes-manager.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../index-styles.css">
+    <style>
+        a{
+            text-decoration: none;
+            color: #00DDAA
+        }
+    </style>
 
     <title>Explainers</title>
 </head>
 
 <body>
     <p class="title">Category theory</p>
-    <div id="catLinks" class="linkSet"></div>
-
-    <br>
+    <div id="catLinks" class="card"></div>
 
     <p class="title">Algebra</p>
-    <div id="algLinks" class="linkSet"></div>
-
-    <br>
+    <div id="algLinks" class="card"></div>
 
     <p class="title">Miscellaneous</p>
-    <div id="miscLinks" class="linkSet"></div>
+    <div id="miscLinks" class="card"></div>
 </body>
 
 <script type="text/javascript">
     links = new Array(0);
-    links.push(new Link("Yoneda lemma", "Yoneda_lemma/main.pdf", ""));
-    links.push(new Link("Free constructions", "Free_constructions/main.pdf", ""));
-    links.push(new Link("Comma categories", "Comma_categories/main.pdf", ""));
-    links.push(new Link("Sections and retractions", "Sections_and_retractions/main.pdf", ""));
-    links.push(new Link("Universal morphisms", "Universal_morphisms/main.pdf", ""));
-    links.push(new Link("Adjoints", "Adjoints/main.pdf", ""));
+    links.push(new NoteLink("Free constructions", "Free_constructions/main.pdf"));
+    links.push(new NoteLink("Comma categories", "Comma_categories/main.pdf"));
+    links.push(new NoteLink("Yoneda embedding", "Yoneda_embedding/main.pdf"));
+    links.push(new NoteLink("Sections and retractions", "Sections_and_retractions/main.pdf"));
+    links.push(new NoteLink("Universal morphisms", "Universal_morphisms/main.pdf"));
+    links.push(new NoteLink("Adjoints", "Adjoints/main.pdf"));
+    links.push(new NoteLink("Adjoints revisited", "Adjoints_revisited/main.pdf"));
+    links.push(new NoteLink("Natural isomorphism", "Natural_isom/main.pdf"));
+    links.push(new NoteLink("Tensor product", "Tensor_product/main.pdf"));
     add_to(links, document.getElementById("catLinks"));
     
     links = new Array(0);
-    links.push(new Link("Normal subgroups", "Normal_subgroups/main.pdf", ""));
-    links.push(new Link("Group actions", "Group_actions/main.pdf", ""));
-    links.push(new Link("Semidirect product", "Semidirect_product/main.pdf", ""));
-    links.push(new Link("Chinese remainder theorem", "Chinese_remainder_thm/main.pdf", ""));
+    links.push(new NoteLink("Normal subgroups", "Normal_subgroups/main.pdf"));
+    links.push(new NoteLink("Group actions", "Group_actions/main.pdf"));
+    links.push(new NoteLink("Semidirect product", "Semidirect_product/main.pdf"));
+    links.push(new NoteLink("Chinese remainder theorem", "Chinese_remainder_thm/main.pdf"));
+    links.push(new NoteLink("Gauss' Theorem for UFDs", "Gauss_theorem/main.pdf"));
+    links.push(new NoteLink("Structure theorem for finitely generated modules over PIDs", "PID_fg_modules/main.pdf"));
+    links.push(new NoteLink("Changing basis for matrices of linear maps", "Basis_change/main.pdf"));
     add_to(links, document.getElementById("algLinks"));
 
     links = new Array(0);
-    links.push(new Link("Implicit function theorem", "Implicit_function_thm/main.pdf", ""));
-    links.push(new Link("Polya enumeration theorem", "Polya_enumeration_thm/main.pdf", ""));
+    links.push(new NoteLink("Polya enumeration theorem", "Polya_enumeration_thm/main.pdf"));
+    links.push(new NoteLink("Implicit function theorem", "Implicit_function_thm/main.pdf"));
+    links.push(new NoteLink("Dealing with DFAs through actions", "DFA_actions/main.pdf"));
+    links.push(new NoteLink("Groups acting over vector spaces", "Groups_over_vect/main.pdf"));
     add_to(links, document.getElementById("miscLinks"));
 </script>
 

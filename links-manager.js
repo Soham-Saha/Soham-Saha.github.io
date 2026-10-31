@@ -14,13 +14,13 @@ class Link {
 function add_to(links, target){
     links.forEach(link => {
         target.innerHTML +=
-            `<div class="link">
+            `<div class="linkCard">
                     <a class="linkName" href="${link.target}">
                         ${link.name}
                     </a>
                     ${
                         link.date || link.desc ?
-                        `<p class="desc">
+                        `<p class="linkDesc">
                             ${(link.date ? `${link.date}\n<br>` : ``)}
                             ${(link.desc ? link.desc : ``)}
                         </p>` : ``

@@ -27,7 +27,7 @@ body {
     font-weight: bold;
 }
 
-.linkSet {
+.cardSet {
     max-width: 800px;
     margin: 0 auto;
     display: grid;
@@ -35,7 +35,7 @@ body {
     gap: 15px;
 }
 
-.link {
+.card, .linkCard {
     border: 2px solid hsl(0, 0%, 40%);
     border-radius: 10px;
     background-color: var(--c3);
@@ -47,7 +47,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-.link:hover {
+.linkCard:hover {
     transform: translateY(-3px);
 }
 
@@ -64,7 +64,7 @@ a{
     font-weight: bold;
 }
 
-.desc {
+.linkDesc {
     margin-top: 10px;
     margin-bottom: 0px;
     color: var(--c4);

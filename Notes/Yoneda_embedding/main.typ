@@ -1,7 +1,7 @@
 #import "../math_template.typ" : *
 
 #show : start.with(
-  title   : "Musings about the Yoneda lemma",
+  title   : "Musings about the Yoneda embedding",
   author  : "Soham Saha"
 )
 
@@ -31,7 +31,7 @@ If the morphism map $hdot_"mor"$ seems like a lot to unpack, check the type at e
 
 Now, let us discuss the #tbold[fullness and faithfulness] of $hdot$. The Yoneda lemma tells us that given a functor $F$ from $C$ to #mbold[Set], $ forall A in obj(C),"Nat"(h_A, F) isom F(A). $
 
-Now, in the case when $F$ is also, some hom-functor $h_B$, this reduces to $ forall A,B in obj(C), "Nat"(h_A,h_B) isom h_B (A)=Hom_C (B,A)=Hom_(C^"op")(A,B), $ which is _exactly_ what we needed! A one-to-one correspondence between hom-sets in $C^"op"$ (the domain of $hdot$), and $"Nat"(h_A,h_B)$, i.e., the corresponding hom-sets in $[C,mbold("Set")]$ (the codomain of $hdot$).   
+Now, in the case when $F$ is also some hom-functor $h_B$, this reduces to $ forall A,B in obj(C), "Nat"(h_A,h_B) isom h_B (A)=Hom_C (B,A)=Hom_(C^"op")(A,B), $ which is _exactly_ what we needed! A one-to-one correspondence between hom-sets in $C^"op"$ (the domain of $hdot$), and $"Nat"(h_A,h_B)$, i.e., the corresponding hom-sets in $[C,mbold("Set")]$ (the codomain of $hdot$).   
 
 #divdash
 

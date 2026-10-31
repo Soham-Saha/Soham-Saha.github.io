@@ -67,6 +67,9 @@
 
 #let Hom = "Hom"
 
+#let underl(body) = underline(body, offset:2pt)
+
+
 #let start(
   title : "",
   author : "",
