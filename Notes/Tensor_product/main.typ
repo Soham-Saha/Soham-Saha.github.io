@@ -8,8 +8,6 @@
 #let tensor = $times.o$
 #let bigtensor = $times.o.big$
 
-\
-
 #notebox[
   This write-up is going to be more of a "collection of facts" than "actually stating and proving stuff". We shall see the general definition of the tensor product and see what nice connections we can find.
 ]

@@ -86,7 +86,8 @@
     #text(size:14pt, author)
     #if show_link [
       #v(0.9em, weak: true)
-      #link("https://soham-saha.github.io")
+      #link("https://soham-saha.github.io")\
+      #link("https://soham-saha.codeberg.page")
     ]
 
     \
