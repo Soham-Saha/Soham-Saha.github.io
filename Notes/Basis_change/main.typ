@@ -7,7 +7,7 @@
 
 Take basis ${u_1,u_2,u_3}$ for $RR^3$, and basis ${v_1,v_2}$ for $RR^2$. We shall have the "formal" (because entries are vectors) row matrices $ U&:=mat(u_1,u_2,u_3)\ V&:=mat(v_1,v_2), $ which store the ordered basis data for $RR^3$ and $RR^2$.
 
-Given a map $cal(T) in Hom_RR (RR^3,RR^2)$, suppose the matrix of $cal(T)$ with respect to the basis  $U$ and $V$ looks like $ A =  mat(1,2,3;4,5,6). $ Observe that $ V A=cal(T)(U), \ "where" cal(T)(E):=mat(cal(T)(u_1),cal(T)(u_2),cal(T)(u_3)). $
+Given a map $cal(T) in Hom_RR (RR^3,RR^2)$, suppose the matrix of $cal(T)$ with respect to the basis  $U$ and $V$ looks like $ A =  mat(1,2,3;4,5,6). $ Observe that $ V A=cal(T)(U), \ "where" cal(T)(U):=mat(cal(T)(u_1),cal(T)(u_2),cal(T)(u_3)). $
 
 #underl[Case 1] : Column operations on $A$
 
