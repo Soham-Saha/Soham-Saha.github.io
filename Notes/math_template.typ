@@ -36,6 +36,7 @@
 
 
 #let note(body) = text(fill:green,body)
+
 #let pnote(body) = text(fill:purple, body)
 
 #let try = text(fill:red, "Try again later.")
@@ -47,6 +48,7 @@
 #let lm =  $lambda$
 
 #let dsum = $plus.o$
+
 #let ldsum = $plus.o.big$
 
 #let inprod(u,v) = $lr(chevron.l #u, #v chevron.r)$
