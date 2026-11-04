@@ -37,6 +37,9 @@
     <p class="title">Algebra</p>
     <div id="algLinks" class="card"></div>
 
+    <p class="title">Calculus</p>
+    <div id="calcLinks" class="card"></div>
+
     <p class="title">Miscellaneous</p>
     <div id="miscLinks" class="card"></div>
 </body>
@@ -65,10 +68,15 @@
     add_to(links, document.getElementById("algLinks"));
 
     links = new Array(0);
-    links.push(new NoteLink("Polya enumeration theorem", "Polya_enumeration_thm/main.pdf"));
     links.push(new NoteLink("Implicit function theorem", "Implicit_function_thm/main.pdf"));
-    links.push(new NoteLink("Dealing with DFAs through actions", "DFA_actions/main.pdf"));
     links.push(new NoteLink("Groups acting over vector spaces", "Groups_over_vect/main.pdf"));
+    links.push(new NoteLink("Alternating multilinear maps and wedge product", "Alt_mult_maps/main.pdf"));
+    links.push(new NoteLink("Tangent spaces and derivations", "Tangent_spaces/main.pdf"));
+    add_to(links, document.getElementById("calcLinks"));
+
+    links = new Array(0);
+    links.push(new NoteLink("Polya enumeration theorem", "Polya_enumeration_thm/main.pdf"));
+    links.push(new NoteLink("Dealing with DFAs through actions", "DFA_actions/main.pdf"));
     add_to(links, document.getElementById("miscLinks"));
 </script>
 

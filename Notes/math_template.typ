@@ -4,6 +4,8 @@
 
 #let divdash=line(length:100%,stroke: (dash:"dashed"))
 
+#let del = math.partial
+
 //Text bold and math bold functions
 #let tbold(body) = text(weight: "bold",body)
 
