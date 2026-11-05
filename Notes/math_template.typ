@@ -73,6 +73,8 @@
 
 #let underl(body) = underline(body, offset:2pt)
 
+#let prod = math.product
+
 
 #let start(
   title : "",
