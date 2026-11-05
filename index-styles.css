@@ -1,9 +1,12 @@
 :root {
-    --c1: #000000;
-    --c2: hsl(0, 0%, 13%);
-    --c3: hsl(0, 0%, 18%);
-    --c4: hsl(0, 0%, 60%);
-    --c5: hsl(0, 0%, 75%);
+    --c0: hsl(9, 15%, 19%);
+    --c1: hsl(from var(--c0) h s 7%);
+    --c2: hsl(from var(--c1) h s 13%);
+    --c3: hsl(from var(--c1) h s 18%);
+    --c4: hsl(from var(--c1) h s 40%);
+    --c5: hsl(from var(--c1) h s 60%);
+    --c6: hsl(from var(--c1) h s 75%);
+    --c7: hsl(from var(--c1) h s 80%);
 }
 
 body {
@@ -14,13 +17,15 @@ body {
     padding: 20px;
     padding-top: 10px;
     background: var(--c2);
-    color: var(--c5);
+    color: var(--c6);
     line-height: 1.2;
+    word-spacing: -0.1em;
+    /* text-align: justify; */
 }
 
 .title {
-    color: hsl(0, 0%, 80%);
-    border-bottom: 2px solid var(--c5);
+    color: var(--c7);
+    border-bottom: 2px solid var(--c6);
     padding-bottom: 5px;
     margin-bottom: 20px;
     font-size: xx-large;
@@ -36,7 +41,7 @@ body {
 }
 
 .card, .linkCard {
-    border: 2px solid hsl(0, 0%, 40%);
+    border: 2px solid var(--c4);
     border-radius: 10px;
     background-color: var(--c3);
     padding: 20px;
@@ -53,20 +58,20 @@ body {
 
 a{
     text-decoration: none;
-    color: greenyellow;
+    color: hsl(9, 64%, 62%);
 }
 
 .linkName {
     font-size: x-large;
     margin-top: 0px;
     margin-bottom: 0px;
-    color: var(--c5);
+    color: var(--c6);
     font-weight: bold;
 }
 
 .linkDesc {
     margin-top: 10px;
     margin-bottom: 0px;
-    color: var(--c4);
+    color: var(--c5);
     line-height: 25px;
 }
