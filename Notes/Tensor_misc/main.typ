@@ -10,8 +10,6 @@
 #let sgn = $"sgn"$
 #let Lm = $Lambda$
 
-\
-
 #notebox[
   We will be working over $cat("Vect")_k$ for arbitrary field $k$.
 

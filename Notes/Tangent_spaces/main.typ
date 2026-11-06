@@ -31,7 +31,7 @@ For every $p$, the homeomorphism/diffeomorphism $phi:U_p->^~U$ from the neighbor
 
 Given a smooth $n$-manifold $M$, and a point $p in M$, consider the following set $ S_p={(I,gamma:I-->^"smooth"M):I "is an open interval in" RR "containing" 0 "s.t." gamma(0)=p} $
 
-So, $S_p$ is the set of smooth curves from some open interval in $RR^n$ to $M$ "based at" $p$.
+So, $S_p$ is the set of smooth curves from some open interval in $RR$ to $M$ "based at" $p$.
 
 Informally speaking, two smooth curves $(I_1,gamma_1),(I_2,gamma_2) in S_p$ will be considered "equivalent" iff they have the same velocity vector at $p$. #indent[
   To make the above definition formal, first observe that there is a diffeomorphic chart $phi:U_p->U$, where $U_p$ is a neighborhood of $p$, and $U$ is an open subset in $RR^n$.
@@ -81,6 +81,12 @@ In general, given a smooth $n$-manifold $M$, and a point $p in M$, any $RR$-line
 
 The set of point derivations at $p$ is denoted as $Der_p (C^oo (M),RR)$.
 
+#notebox[
+  Point derivations, as defined above, are intended to capture the essence of "taking the directional derivative at a point". The key idea is that the Leibniz rule is all we care about it anyway.
+
+  In fact, as we will soon see, all point derivations at $p$ are "essentially" the same as taking the directional derivative at $p$ along some vector.
+]
+
 #divdash
 
 Given a topological space $X$, a set $Y$, and functions $f,g:X->Y$, $f$ and $g$ *define the same germ* at $x in X$ if there is some open neighborhood around $x$ where $f$ and $g$ agree.
@@ -97,12 +103,22 @@ Define $C^oo_(p, U)$ as $ C^oo_(p,U):=T_(p,U)\/approx. $
 
 $C_(p,U)^oo$ forms a vector space over $RR$.
 
+#notebox[
+  So, each elements of $C_(p,U)^oo$ contains data about how a $C^oo$--function can "locally" behave around $p in U$.
+]
+
 We define point derivations on $C^oo_(p,U)$ as $RR$-linear maps from $C_(p,U)^oo$ to $RR$ which satisfy the Leibniz rule at $p$; i.e., a derivation $Delta in Hom_RR (C_(p,U)^oo,RR)$ satisfies $ forall f,g in C_(p,U)^oo,Delta (f g)=f_0(p)Delta (g)+Delta (f)g_0(p), \ "where" f=[(V,f_0)],g=[(W,g_0)],f g:=[f|_(V inter W) times g|_(V inter W)] $
 
 The set of *point derivations on $C_(p,U)^oo$ at $p$* is denoted as $Der_p (C^oo_(p,U),RR)$.
 
 #notebox[
   In our lectures, $Der_p (C^oo_(p,U),RR)$ is denoted as $cal(D)(C^oo_p)$.
+
+  #div
+
+  As we mentioned above, each elements in $Der_p (C^oo (U),RR)$ is supposed to represent the action of taking directional derivative of an arbitrary function at $p$ along some vector.
+
+  To extend that analogy, each element in $cal(D)(C_p^oo)$ represents taking in the "local behavior at $p$" of an arbitrary $C^oo$-function, and then taking its directional derivative along some vector.
   
   #div
   
@@ -115,6 +131,10 @@ The set of *point derivations on $C_(p,U)^oo$ at $p$* is denoted as $Der_p (C^oo
 
 #divdash
 
+#notebox[
+  This part formalizes that all point derivations at $p$ are actually equal to $D_v$ for some vector $v$, where $D_v$ represents the taking the directional derivative at $p$ along $v$.
+]
+
 Given an open set $U subset.eq RR^n$, and a point $p in U$, we would like to characterize derivations $Delta in Der_p (C^oo_(p,U),RR)$.
 
 Fortunately for us, it turns out that all point derivations are actually equal to $D_v$ for some $v in T_p (U)$.
@@ -124,7 +144,7 @@ In fact, $ Phi&:T_p (U)->Der_p (C_(p,U)^oo, RR)\ Phi &:=v |-> D_v $ is an isomor
 #notebox[
   Recall the isomorphism between $T_p (U)$ and $RR^n$, $[(I,gamma)]|->gamma'(0)$.
   
-  Observe that for arbitrary $v in T_p (U)$, where $v=[(I,gamma)]$, we have $ Phi^(-1)(Phi(v))&=Phi^(-1)(D_v)\ &=mat(D_v (overline(x^i)))_(1<=i<=n)^T\ &=mat(D_v (x^i))_(1<=i<=n)^T\ &= [D (x^i compose gamma)(0)]_(1<=i<=n)^T\ &=[D_i (gamma)(0)]_(1<=i<n)^T\ &= gamma'(0), $ and under the isomorphism $RR^n isom T_p (U)$, this becomes $[(I,gamma)]=v$. Therefore, $Phi^(-1) compose Phi =id$.
+  Observe that for arbitrary $v in T_p (U)$, where $v=[(I,gamma)]$, we have $ Phi^(-1)(Phi(v))&=Phi^(-1)(D_v)\ &=mat(D_v (overline(x^i)))_(1<=i<=n)^T\ &=mat(D_v (x^i))_(1<=i<=n)^T\ &= [D (x^i compose gamma)(0)]_(1<=i<=n)^T\ &=[D_i (gamma)(0)]_(1<=i<=n)^T\ &= gamma'(0), $ and under the isomorphism $RR^n isom T_p (U)$, this becomes $[(I,gamma)]=v$. Therefore, $Phi^(-1) compose Phi =id$.
 
   Now, given an arbitrary point derivation $Delta in Der_p (C_(p,U)^oo,RR)$, we have $ Phi (Phi^(-1)(Delta))&=Phi(mat(Delta (overline(x^1)), ..., Delta (overline(x^n)))^T)\ &=D_v, "where" v=mat(Delta (overline(x^1)), ..., Delta (overline(x^n)))^T $
 
@@ -132,7 +152,7 @@ In fact, $ Phi&:T_p (U)->Der_p (C_(p,U)^oo, RR)\ Phi &:=v |-> D_v $ is an isomor
 
   We have previously shown that $D_v (f)=lr(chevron.l v,[D_i (f)(p)]^T chevron.r)$, where the inner product is dot product.
 
-  So here, for some arbitrary $f in C^oo_(p,U)$, we have $ Phi(Phi^(-1)(Delta))(f)&=D_v (f)\ &=sum_(i=0)^n Delta(overline(x^i)) dot D_i (f)(p) $
+  So here, for some arbitrary $f in C^oo_(p,U)$, we have $ Phi(Phi^(-1)(Delta))(f)&=D_v (f)\ &=sum_(i=1)^n Delta(overline(x^i)) dot D_i (f)(p) $
 
   #try : See 22nd Oct board pics, almost done, just do the Taylor expansion.
 ]
@@ -150,7 +170,6 @@ If we think of $T_p (U)$ as being isomorphic to $RR^n$, then we get the basis ${
 \
 
 #notebox[
-  Therefore we have a $3$-way isomorphism so far, $ T_p (U) isom RR^n isom cal(D)(C_p^oo), $ given by $ v in RR^n &|-> cases((t in [0,1]|->p+ v t) in T_p (U), ("directional derivative along" v) in cal(D)(C_p^oo))\ gamma in T_p (U)&|->cases(phi'(0) in RR^n, (f|->D(f compose gamma)(0)) in cal(D)(C^oo_p))\ Delta in cal(D)(C^oo_p)&|->cases(mat(Delta(overline(x^1)),...,Delta(overline(x^n)))^T in RR^n, "just use above" RR^n->T_p (U) "map") $
+  Therefore we have a $3$-way isomorphism so far, $ T_p (U) isom RR^n isom cal(D)(C_p^oo), $ given by $ v in RR^n &|-> cases((t in [-epsilon,epsilon]|->p+ v t) in T_p (U), ("directional derivative along" v) in cal(D)(C_p^oo))\ gamma in T_p (U)&|->cases(phi'(0) in RR^n, (f|->D(f compose gamma)(0)) in cal(D)(C^oo_p))\ Delta in cal(D)(C^oo_p)&|->cases(mat(Delta(overline(x^1)),...,Delta(overline(x^n)))^T in RR^n, "just use above" RR^n->T_p (U) "map") $
 ]
 
-#divdash
