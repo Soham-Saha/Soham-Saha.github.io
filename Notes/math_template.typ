@@ -75,6 +75,11 @@
 
 #let prod = math.product
 
+#let tensor = math.times.o
+#let Hom = $"Hom"$
+#let sgn = $"sgn"$
+#let Lm = $Lambda$
+
 
 #let start(
   title : "",
