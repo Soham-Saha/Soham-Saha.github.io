@@ -83,9 +83,9 @@ We are mostly interested in the case when $V=RR$, i.e., $phi in Hom_RR (Lm^k (RR
   Playing around with the ideas developed above, we get that:
 
   #rect(width:100%)[
-    Every $phi in Lm^k (RR^n)^*$ is a "coherent" way of mapping $k$-dimensional parallelepipeds in $RR^n$ to scalars, where "coherent" implies:
-    - $phi$ should respect taking sum (as $k$-vectors) of two $k$-parallelepipeds, whenever the sum is again a simple $k$-vector.
-    - For two $k$-parallelepipeds which have the same span in $RR^n$, if $ "absolute-"k"-Volume"(A)=r dot "absolute-"k"-Volume"(B) $ for some $r in RR_(>=0)$, then $ phi(A)=cases(&r phi(B) "if" A "and" B "have same orientation",-&r phi(B) "otherwise") $
+    Every $phi in Lm^k (RR^n)^*$ is a "coherent" way of assigning scalar values to $k$-dimensional parallelepipeds in $RR^n$ ("_measuring_ a $k$-parallelepiped"), where "coherent" implies:
+    - $phi$ should respect taking sum (as $k$-vectors) of $k$-parallelepipeds, whenever the sum is again a simple $k$-vector.
+    - For two $k$-parallelepipeds which have the *same span* in $RR^n$, if $ "absolute-"k"-Volume"(A)=r dot "absolute-"k"-Volume"(B) $ for some $r in RR_(>=0)$, then $ phi(A)=cases(&r phi(B) "if" A "and" B "have same orientation",-&r phi(B) "otherwise") $
   ]
 
   Note that $k$-vectors refer to elements of $Lm^k (RR^n)$, and simple $k$-vectors are those which can be written as $v_1 and ... and v_k$ for some $v_i in RR^n$.
