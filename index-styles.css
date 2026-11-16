@@ -9,7 +9,16 @@
     --c7: hsl(from var(--c1) h s 80%);
 }
 
+@font-face {
+    font-family: "Handwriting1";
+    src: url("Handwriting1-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 body {
+    /* font-family: 'Handwriting1', 'Fira Code', 'Consolas', monospace; font-size: 1.5rem; */
     font-family: 'Fira Code', 'Consolas', monospace;
     line-height: 1.6;
     max-width: 800px;
