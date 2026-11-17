@@ -10,16 +10,16 @@
 }
 
 @font-face {
-    font-family: "Handwriting1";
-    src: url("Handwriting1-Regular.woff2") format("woff2");
+    font-family: "Handwriting1A";
+    src: url("Handwriting1A-Regular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
+    size-adjust: 120%;
 }
 
 body {
-    /* font-family: 'Handwriting1', 'Fira Code', 'Consolas', monospace; font-size: 1.5rem; */
-    font-family: 'Fira Code', 'Consolas', monospace;
+    font-family: 'Handwriting1A', 'Fira Code', 'Consolas', monospace;
     line-height: 1.6;
     max-width: 800px;
     margin: 0 auto;
@@ -27,8 +27,8 @@ body {
     padding-top: 10px;
     background: var(--c2);
     color: var(--c6);
-    line-height: 1.2;
-    word-spacing: -0.1em;
+    line-height: 1.3;
+    word-spacing: 0.1em;
     /* text-align: justify; */
 }
 
